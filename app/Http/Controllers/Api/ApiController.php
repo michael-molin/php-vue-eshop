@@ -1,23 +1,21 @@
 <?php
-// PASSIAMO ALLA HOME PRINCIPALE TUTTI I RECORD DELLA TAB PRODUCTS
-namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+namespace App\Http\Controllers\Api;
 use App\Product;
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 
-class WelcomeController extends Controller
+class ApiController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function getProducts()
     {
-        // $products= Product::all();
-        // $productJSON = json_encode($products);
-        // var_dump($productJSON);
-        return view('welcome');
+        $products= Product::all();
+        return response()->json($products);
     }
 
     /**

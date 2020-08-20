@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+{{-- <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         <meta charset="utf-8">
@@ -62,9 +62,12 @@
                 margin-bottom: 30px;
             }
         </style>
-    </head>
+    </head> --}}
+    @extends('layouts.app')
+
+    @section('content')
     <body>
-        <div class="flex-center position-ref full-height">
+        <div class="flex-center position-ref full-height Auth">
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
@@ -78,17 +81,35 @@
                     @endauth
                 </div>
             @endif
-
-            <div class="content">
-                <div class="title m-b-md">
-                    ESHOP VUE LARAVEL
+            <div class="container">
+                <div>
+                    <h1>ESHOP VUE LARAVEL</h1>
                 </div>
-
                 <div class="links">
                     <a href="https://laravel.com/docs">Mirko</a>
                     <a href="https://laracasts.com">Michael</a>
                 </div>
+
+                <div class="flex-container">
+                    {{-- @foreach ($products as $product)
+                        <div class="card">
+                            <h2>{{$product->name}}</h2>
+                            <p>{{$product->description}}</p>
+                            <small>{{$product->price}}</small>
+                            <img src={{$product->photo}} alt="">
+                        </div>
+
+                    @endforeach --}}
+                </div>
             </div>
         </div>
     </body>
-</html>
+    <welcome-component></welcome-component>
+    @endsection
+{{-- </html> --}}
+
+<style>
+    .flex-container {
+        display: flex;
+    }
+</style>
