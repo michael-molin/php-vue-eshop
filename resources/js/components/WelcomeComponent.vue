@@ -4,20 +4,34 @@
         <h2>Nome: {{product.name}}</h2>
         <!-- <p>Descrizione: {{product.description}}</p> -->
         <small>Prezzo: {{product.price}}</small>
-        <button type="button" name="button">Visualizza</button>
-        
+
+        <!-- al click isOpen diventa il contario -->
+        <button @click='isOpen = !isOpen' type="button" name="button">Visualizza</button>
+        <p>{{isOpen}}</p>
+        <div v-if='isOpen' class="ciao">
+          <div class="">
+            APERTO
+          </div>
+        </div>
         <img :src='product.photo' alt="">
       </div>
     </div>
 </template>
+
+<style lang="scss">
+  .ciao {
+    background-color: pink;
+  }
+
+</style>
 
 
 <script>
     export default {
         data() {
           return {
-            products : []
-
+            products : [],
+            isOpen : false // var sentinella
           }
 
         },
