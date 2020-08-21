@@ -5,7 +5,8 @@
         <!-- <p>Descrizione: {{product.description}}</p> -->
         <small>Prezzo: {{product.price}}</small>
         <button type="button" name="button">Visualizza</button>
-        
+        <button type="button" name="button">Aggiungi al carrello</button>
+        <button type="button" name="button">Pannello di controllo</button>
         <img :src='product.photo' alt="">
       </div>
     </div>

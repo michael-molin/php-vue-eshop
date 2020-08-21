@@ -67,46 +67,41 @@
 
     @section('content')
     <body>
-        <div class="flex-center position-ref full-height Auth">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
-
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
-                        @endif
-                    @endauth
-                </div>
-            @endif
-            <div class="container">
-                <div>
-                    <h1>ESHOP VUE LARAVEL</h1>
-                </div>
-                <div class="links">
-                    <a href="https://laravel.com/docs">Mirko</a>
-                    <a href="https://laracasts.com">Michael</a>
-                </div>
-
-                <div class="flex-container">
-                    {{-- @foreach ($products as $product)
-                        <div class="card">
-                            <h2>{{$product->name}}</h2>
-                            <p>{{$product->description}}</p>
-                            <small>{{$product->price}}</small>
-                            <img src={{$product->photo}} alt="">
-                        </div>
-
-                    @endforeach --}}
-                </div>
-            </div>
+     <div class="flex-center position-ref full-height Auth">
+        <div class="container">
+          <div>
+            <h1>ESHOP VUE LARAVEL</h1>
+          </div>
+          <div class="links">
+            <a href="https://laravel.com/docs">Mirko</a>
+            <a href="https://laracasts.com">Michael</a>
+          </div>
         </div>
+      </div>
     </body>
-    <welcome-component></welcome-component>
+
+    <!-- @if (Route::has('login'))
+    <div class="top-right links">
+      @auth
+      <welcome-component-cart></welcome-component-cart>
+      @else
+      <welcome-component></welcome-component>
+      @endauth
+    </div>
+    @endif -->
+    <!-- se la rotta e' loggata -->
+    @if(Auth::check())
+        <!-- se utente LOGGATO User, ADMIN e' TRUE -->
+        @if(Auth::user()->admin)
+          <welcome-component-admin></welcome-component-admin>
+          @else
+          <welcome-component-cart></welcome-component-cart>
+        @endif
+      @else
+        <welcome-component></welcome-component>
+      @endif
     @endsection
-{{-- </html> --}}
+</html>
 
 <style>
     .flex-container {
