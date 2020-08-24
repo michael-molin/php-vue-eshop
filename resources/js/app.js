@@ -6,7 +6,10 @@
 
 require('./bootstrap');
 
-window.Vue = require('vue');
+// window.Vue = require('vue');
+import Vue from 'vue';                                                          //importo Vue dal node.js vue
+import VueCarousel from 'vue-carousel';                                         //importo il carosello da vue-carousel
+
 
 /**
  * The following block of code may be used to automatically register your
@@ -23,7 +26,8 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 Vue.component('welcome-component', require('./components/WelcomeComponent.vue').default);
 Vue.component('welcome-component-cart', require('./components/WelcomeComponentCart.vue').default);
 Vue.component('welcome-component-admin', require('./components/WelcomeComponentAdmin.vue').default);
-
+Vue.use(VueCarousel);
+//Definisco i componenti creati e utilizzo tramito use quelli già pre-impostati
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
