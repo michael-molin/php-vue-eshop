@@ -6,6 +6,11 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 use App\Product;
+use App\User;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
+
 
 class ProductController extends Controller
 {
@@ -28,7 +33,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-      
+
         return view('admin.products.create');
     }
 
@@ -40,7 +45,32 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+        // dd($data);
+        $data['user_id'] = Auth::id();
+        $data['photo'] = 'https://picsum.photos/200/300';
+
+        $validator = Validator::make($data, [
+            'name' => 'required|string|max:50',
+            'price' => 'required|numeric',
+            'description' => 'required|string',
+            'stock' => 'required|numeric',
+            'photo' => 'required|string',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->route('admin.products.create')
+            ->withErrors($validator)
+            ->withInput();
+        }
+
+        $product = new Product;
+        $product->fill($data);
+        $product->save();
+
+        return redirect()->route('admin.products.index');
+
+
     }
 
     /**
@@ -62,7 +92,10 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        //
+      $product = Product::findOrFail($id);
+
+
+      return view('admin.products.edit', compact('product'));
     }
 
     /**

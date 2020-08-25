@@ -29,7 +29,7 @@
                 <input type="text" name="stock" id="stock" class="form-control" value="{{old('stock') ? old('stock') : $product->stock}}">
             </div>
             <div class="form-group">
-                <label for="description">Descrizione</labeldescription
+                <label for="description">Descrizione</label>
                 <textarea name="description" id="description" cols="30" rows="10" class="form-control" value="{{old('description') ? old('description') : $product->description}}"></textarea>
             </div>
             <!-- <div class="new-photo">
@@ -37,7 +37,7 @@
                 <input type="file" name="photo" id="photo">
             </div> -->
           </form>
-          <input class="btn btn-primary" type="submit" value="Salva">
+          <input class="btn btn-primary" type="submit" value="Change">
         </div>
       </div>
     </div>

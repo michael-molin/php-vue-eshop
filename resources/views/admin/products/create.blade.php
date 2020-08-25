@@ -36,8 +36,8 @@
                 <label for="photo">Aggiungi nuova foto: </label>
                 <input type="file" name="photo" id="photo">
             </div>
+            <input class="btn btn-primary" type="submit" value="Salva">
           </form>
-          <input class="btn btn-primary" type="submit" value="Salva">
         </div>
       </div>
     </div>
