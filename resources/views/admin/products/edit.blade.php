@@ -15,7 +15,7 @@
           @endforeach
           <form action="{{route('admin.products.update', $product->id)}}" method="POST" enctype="multipart/form-data">
             @csrf
-            @method('POST')
+            @method('PATCH')
             <div class="form-group">
                 <label for="name">Nome</label>
                 <input type="text" name="name" id="name" class="form-control" value="{{old('name') ? old('name') : $product->name}}">
@@ -30,14 +30,14 @@
             </div>
             <div class="form-group">
                 <label for="description">Descrizione</label>
-                <textarea name="description" id="description" cols="30" rows="10" class="form-control" value="{{old('description') ? old('description') : $product->description}}"></textarea>
+                <textarea name="description" id="description" cols="30" rows="10" class="form-control">{{old('description') ? old('description') : $product->description}}</textarea>
             </div>
             <!-- <div class="new-photo">
                 <label for="photo">Aggiungi nuova foto: </label>
                 <input type="file" name="photo" id="photo">
             </div> -->
+            <input class="btn btn-primary" type="submit" value="Change">
           </form>
-          <input class="btn btn-primary" type="submit" value="Change">
         </div>
       </div>
     </div>

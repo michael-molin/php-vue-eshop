@@ -107,7 +107,29 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+      $data = $request->all();
+      // dd($data);
+      $product = Product::findOrFail($id);
+
+      $validator = Validator::make($data, [
+          'name' => 'required|string|max:50',
+          'price' => 'required|numeric',
+          'description' => 'required|string',
+          'stock' => 'required|numeric',
+          // 'photo' => 'required|string',
+      ]);
+
+      if ($validator->fails()) {
+          return redirect()->route('admin.products.edit')
+          ->withErrors($validator)
+          ->withInput();
+      }
+
+
+      $product->fill($data);
+      $product->update();
+
+      return redirect()->route('admin.products.index');
     }
 
     /**
@@ -118,6 +140,10 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $product = Product::findOrFail($id);
+        
+        $product->delete();
+
+        return redirect()->route('admin.products.index');
     }
 }
