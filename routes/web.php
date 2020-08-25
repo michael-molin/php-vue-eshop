@@ -23,13 +23,21 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::namespace('Guest')
-->name('guest.')
-->prefix('guest')
-->group(function (){
-    // Route::get('homes', 'GuestController@index')->name('homes.index');
-    // Route::get('homes/{home}', 'GuestController@show')->name('homes.show');
-    // Route::post('messages', 'MessageController@store')->name('messages.store');
-    // Route::post('stats/{home_id}', 'StatController@store')->name('stats.store');
-    // Route::post('homes/search', 'GuestController@search')->name('homes.search');
+Route::namespace('Admin')
+->name('admin.')
+->prefix('admin')
+->middleware('auth')
+->group(function() {
+    Route::resource('products' , 'ProductController');
+        // Route::resource('photos' , 'PhotoController');
+        // Route::resource('categories' , 'CategoryController');
+        // Route::resource('tags' , 'TagController');
+        // Route::resource('users' , 'UserController');
+
+// ->group(function (){
+//     Route::get('/product', 'ProductController@index')->name('products.index');
+//     Route::post('/product', 'ProductController@create')->name('products.create');
+//     Route::get('/product/{product_id}', 'ProductController@show')->name('products.show');
+//     Route::post('/product/{product_id}', 'ProductController@edit')->name('products.edit');
+//     Route::post('/product/{product_id}', 'ProductController@destroy')->name('products.destroy');
 });

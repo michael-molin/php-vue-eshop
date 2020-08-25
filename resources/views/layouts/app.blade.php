@@ -55,9 +55,9 @@
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
 
-
+                                <!-- se ADMIN compare -->
                                 @if(Auth::user()->admin)
-                                  <a href="#">PANNELLO ADMIN</a>
+                                  <a href="{{route('admin.products.index')}}">PANNELLO ADMIN</a>
                                 @endif
 
 
