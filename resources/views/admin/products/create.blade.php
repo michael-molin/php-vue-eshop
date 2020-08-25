@@ -37,6 +37,7 @@
                 <input type="file" name="photo" id="photo">
             </div>
           </form>
+          <input class="btn btn-primary" type="submit" value="Salva">
         </div>
       </div>
     </div>
