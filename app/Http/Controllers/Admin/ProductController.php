@@ -81,7 +81,8 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        //
+        $product = Product::findOrFail($id);
+        return view('admin.products.show' , compact('product'));
     }
 
     /**
@@ -141,7 +142,7 @@ class ProductController extends Controller
     public function destroy($id)
     {
         $product = Product::findOrFail($id);
-        
+
         $product->delete();
 
         return redirect()->route('admin.products.index');

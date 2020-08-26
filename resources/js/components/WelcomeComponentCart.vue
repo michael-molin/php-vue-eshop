@@ -21,12 +21,13 @@
                         </carousel>
                         <p>{{thisProduct.description}}</p>
                         <p>In magazzino: {{thisProduct.stock}}</p>
-                        <button id="btn-cart" type="button" name="button" @click="getCart(thisProduct)">Aggiungi al Carrello</button>
+                        <button id="btn-cart" type="button" name="button" @click="sentToCart(thisProduct)">Aggiungi al Carrello</button>
                     </div>
                 </div>
             </transition>
         </div>
         <img :src='product.photo' alt="">
+        <button id="btn-cart" type="button" name="button" @click="sentToCart(product)">Aggiungi al Carrello</button>
       </div>
     </div>
 </template>
@@ -106,8 +107,10 @@
                 this.thisProduct=item;
             },
 
-            getCart(item) {
-                alert(item.name);
+            sentToCart(item) {
+                var productSelected = item;
+                this.$emit('addCart' , productSelected);
+                console.log(productSelected);
             },
 
             // handleSlideClick (dataset) {

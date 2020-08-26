@@ -9,7 +9,7 @@ require('./bootstrap');
 // window.Vue = require('vue');
 import Vue from 'vue';                                                          //importo Vue dal node.js vue
 import VueCarousel from 'vue-carousel';                                         //importo il carosello da vue-carousel
-
+import store from "./store";
 
 /**
  * The following block of code may be used to automatically register your
@@ -26,6 +26,7 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 Vue.component('welcome-component', require('./components/WelcomeComponent.vue').default);
 Vue.component('welcome-component-cart', require('./components/WelcomeComponentCart.vue').default);
 Vue.component('welcome-component-admin', require('./components/WelcomeComponentAdmin.vue').default);
+Vue.component('cart-component', require('./components/CartComponent.vue').default);
 Vue.use(VueCarousel);
 //Definisco i componenti creati e utilizzo tramito use quelli già pre-impostati
 /**
@@ -35,5 +36,6 @@ Vue.use(VueCarousel);
  */
 
 const app = new Vue({
+    store,
     el: '#app',
 });
