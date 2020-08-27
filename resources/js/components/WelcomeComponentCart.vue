@@ -1,35 +1,35 @@
 <template>
-    <div class="container">
-
-      <div v-for='(product, index) in products' :key='index' class="card">
-        <h2>Nome: {{product.name}}</h2>
-        <small>Prezzo: {{product.price}}</small>
-        <button @click='isOpen = !isOpen , getThisProduct(product)' type="button" name="button">Visualizza</button>
-        <div v-if='isOpen'>
-            <transition class="fade">
-                <div class="mask-overlay" @click="isOpen = !isOpen">
-                    <div class="panel" @click.stop>
-                        <h2>{{thisProduct.name}}</h2>
-                        <p>{{thisProduct.price}}€</p>
-                        <carousel :per-page="1" :autoplay="true" :mouse-drag="true">
-                            <slide>
-                                <img src="https://picsum.photos/200/300?random=1">
-                            </slide>
-                            <slide>
-                               <img src="https://picsum.photos/200/300?random=2">
-                            </slide>
-                        </carousel>
-                        <p>{{thisProduct.description}}</p>
-                        <p>In magazzino: {{thisProduct.stock}}</p>
-                        <button id="btn-cart" type="button" name="button" @click="sentToCart(thisProduct)">Aggiungi al Carrello</button>
+        <div class="container">
+        <cart-component v-model="cartProduct" :products="cartProduct"></cart-component>
+          <div v-for='(product, index) in products' :key='index' class="card">
+            <h2>Nome: {{product.name}}</h2>
+            <small>Prezzo: {{product.price}}</small>
+            <button @click='isOpen = !isOpen , productShow(product)' type="button" name="button">Visualizza</button>
+            <div v-if='isOpen'>
+                <transition class="fade">
+                    <div class="mask-overlay" @click="isOpen = !isOpen">
+                        <div class="panel" @click.stop>
+                            <h2>{{thisProduct.name}}</h2>
+                            <p>{{thisProduct.price}}€</p>
+                            <carousel :per-page="1" :autoplay="true" :mouse-drag="true">
+                                <slide>
+                                    <img src="https://picsum.photos/200/300?random=1">
+                                </slide>
+                                <slide>
+                                   <img src="https://picsum.photos/200/300?random=2">
+                                </slide>
+                            </carousel>
+                            <p>{{thisProduct.description}}</p>
+                            <p>In magazzino: {{thisProduct.stock}}</p>
+                            <button id="btn-cart" type="button" name="button" @click="sentToCart(thisProduct)">Aggiungi al Carrello</button>
+                        </div>
                     </div>
-                </div>
-            </transition>
+                </transition>
+            </div>
+            <img :src='product.photo' alt="">
+            <button id="btn-cart" type="button" name="button" @click="sentToCart(product)">Aggiungi al Carrello</button>
+          </div>
         </div>
-        <img :src='product.photo' alt="">
-        <button id="btn-cart" type="button" name="button" @click="sentToCart(product)">Aggiungi al Carrello</button>
-      </div>
-    </div>
 </template>
 
 <style lang="scss">
@@ -42,7 +42,7 @@
     .mask-overlay{
             position: fixed;
             z-index: 9998;
-            top: 0;
+            top: 0px;
             left: 0;
             width: 100vw;
             height: 100vh;
@@ -78,16 +78,19 @@
 
 
 <script>
+    import CartComponent from "../components/CartComponent";
     import { Carousel, Slide } from 'vue-carousel';                             //Importo nel componente i tag slide e carousel dalla cartella node.js vue-carousel
     export default {
         data() {
           return {
             products : [],
             thisProduct : {},
+            cartProduct : [],
             isOpen : false, // var sentinella
           }
 
         },
+
         mounted() {
             // console.log('Welcome Montato');
             axios({
@@ -103,14 +106,13 @@
             });
         },
         methods: {
-            getThisProduct(item) {
+            productShow(item) {
                 this.thisProduct=item;
             },
 
             sentToCart(item) {
-                var productSelected = item;
-                this.$emit('addCart' , productSelected);
-                console.log(productSelected);
+                this.cartProduct.push(item);
+                console.log('funzione sent to card: ' + this.cartProduct.length);
             },
 
             // handleSlideClick (dataset) {
@@ -120,7 +122,8 @@
 
         components: {
             Carousel,
-            Slide
+            Slide,
+            CartComponent
         }
     }
 </script>
