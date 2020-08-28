@@ -86,7 +86,7 @@
             products : [],
             thisProduct : {},
             cartProduct : [],
-            isOpen : false, // var sentinella
+            isOpen : false, // var sentinella ++
           }
 
         },
