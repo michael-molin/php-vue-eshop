@@ -1,48 +1,73 @@
 <template>
-    <div class="cart-component" v-if="products.length>0">
-        <i class="fas fa-shopping-cart"></i>
-        <span>{{products.length}}</span>
-        <div v-for="(product, index) in products" :key="index">
-            {{product.name}}
+    <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link" href="">
+            Cart {{ $store.state.cartCount }}
+        </a>
+
+        <div v-if="$store.state.cart.length > 0" class="navbar-dropdown is-boxed is-right">
+            <a v-for="(item,index) in $store.state.cart" :key="index" class="navbar-item" href="">
+                {{ item.name }} - ${{ item.price }} <br>
+                <!-- <span class="removeBtn" title="Remove from cart" @click.prevent="removeFromCart(item)">X</span> -->
+            </a>
+            <br>
+            <a class="navbar-item" href="">
+                Total: ${{ $store.state.totalPrice }}
+            </a>
+            <hr class="navbar-divider">
+            <a class="navbar-item" @click="toCheckout($store.state)" href="">
+                Checkout
+            </a>
         </div>
-        <span v-number="addPrice(products)"> {{price}}</span>
-        <button type="button" name="button"> CheckOut </button>
+
+        <div v-else class="navbar-dropdown is-boxed is-right">
+            <a class="navbar-item" href="">
+                Cart is empty
+            </a>
+        </div>
     </div>
 </template>
 
 <style>
-.cart-component {
-    position: fixed;
-    right: 0;
-    top: 0;
-    padding-top: 75px;
-    height: 100%;
-}
+    .removeBtn {
+        margin-right: 1rem;
+        color: red;
+    }
 </style>
 
 <script>
     export default {
         data() {
             return {
-                price: 0,
-                stringa: 'ciao'
             }
         },
 
-        props: ['products'],
 
         mounted() {                                                             //Si avvia solo alla creazione o montaggio del componente
 
         },
 
         methods: {
-            addPrice(products) {
-                // this.price = parseInt(this.price + prezzo);
-                // console.log(parseInt(prezzo));
-                this.price=0;
-                for (var i = 0; i < products.length; i++) {
-                    this.price+= products[i].price;
-                }
+            removeFromCart(item) {
+                this.$store.commit('removeFromCart', item);
+            },
+
+            toCheckout(cart) {
+                // let data = {
+                //     cart: JSON.stringify(this.$store.state)
+                // }
+                // axios.post('checkout', data);
+                axios({
+                    method: 'post',
+                    url: 'api/checkout',
+                    data: {
+                        cart: JSON.stringify(this.$store.state.cart)
+                    }
+                }).then((response) => {
+                    console.log(response);
+
+                }).catch((error) => {
+                    console.log('checkout ' + error)
+                });
             }
         }
     }

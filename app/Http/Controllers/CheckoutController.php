@@ -1,28 +1,21 @@
 <?php
 
-namespace App\Http\Controllers\Api;
-use App\Product;
-use App\Http\Controllers\Controller;
+namespace App\Http\Controllers;
+
 use Illuminate\Http\Request;
 
-class ApiController extends Controller
+class CheckoutController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function getProducts()
+    public function index()
     {
-        $products= Product::all();
-        return response()->json($products);
-    }
-
-    public function getCheckout(Request $request)
-    {
-        $checkout= $request;
-        dd($checkout);
-        return response()->json($products);
+        $cart = json_decode(request('data'));
+        dd($cart);
+        return view('checkout');
     }
 
     /**

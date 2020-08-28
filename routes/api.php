@@ -19,3 +19,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('products' , "Api\ApiController@getProducts");  // nome variabile / funzione all'interno del controller / nome rotta
+Route::post('checkout' , "Api\ApiController@getCheckout");

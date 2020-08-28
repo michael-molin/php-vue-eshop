@@ -1,13 +1,12 @@
 <template>
         <div class="container">
-        <cart-component v-model="cartProduct" :products="cartProduct"></cart-component>
           <div v-for='(product, index) in products' :key='index' class="card">
-            <h2>Nome: {{product.name}}</h2>
-            <small>Prezzo: {{product.price}}</small>
-            <button @click='isOpen = !isOpen , productShow(product)' type="button" name="button">Visualizza</button>
-            <div v-if='isOpen'>
-                <transition class="fade">
-                    <div class="mask-overlay" @click="isOpen = !isOpen">
+              <h2>Nome: {{product.name}}</h2>
+              <small>Prezzo: {{product.price}}</small>
+              <button @click='isOpen = !isOpen , productShow(product)' type="button" name="button">Visualizza</button>
+              <div v-if='isOpen'>
+                  <transition class="fade">
+                      <div class="mask-overlay" @click="isOpen = !isOpen">
                         <div class="panel" @click.stop>
                             <h2>{{thisProduct.name}}</h2>
                             <p>{{thisProduct.price}}€</p>
@@ -24,10 +23,10 @@
                             <button id="btn-cart" type="button" name="button" @click="sentToCart(thisProduct)">Aggiungi al Carrello</button>
                         </div>
                     </div>
-                </transition>
-            </div>
-            <img :src='product.photo' alt="">
-            <button id="btn-cart" type="button" name="button" @click="sentToCart(product)">Aggiungi al Carrello</button>
+                  </transition>
+              </div>
+              <img :src='product.photo' alt="">
+              <button id="btn-cart" type="button" name="button" @click="addToCart(product)">Aggiungi al Carrello</button>
           </div>
         </div>
 </template>
@@ -78,7 +77,6 @@
 
 
 <script>
-    import CartComponent from "../components/CartComponent";
     import { Carousel, Slide } from 'vue-carousel';                             //Importo nel componente i tag slide e carousel dalla cartella node.js vue-carousel
     export default {
         data() {
@@ -106,14 +104,17 @@
             });
         },
         methods: {
-            productShow(item) {
+            productShow(product) {
                 this.thisProduct=item;
             },
 
-            sentToCart(item) {
-                this.cartProduct.push(item);
-                console.log('funzione sent to card: ' + this.cartProduct.length);
-            },
+            addToCart(item) {
+                this.$store.commit('storeProduct', item);
+            }
+            // sentToCart(item) {
+            //     this.cartProduct.push(item);
+            //     console.log('funzione sent to card: ' + this.cartProduct.length);
+            // },
 
             // handleSlideClick (dataset) {
             //    console.log(dataset.index, dataset.name)
@@ -122,8 +123,7 @@
 
         components: {
             Carousel,
-            Slide,
-            CartComponent
+            Slide
         }
     }
 </script>

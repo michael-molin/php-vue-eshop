@@ -23,6 +23,8 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::get('/checkout', 'CheckoutController@index')->name('checkout');
+
 Route::namespace('Admin')
 ->name('admin.')
 ->prefix('admin')
