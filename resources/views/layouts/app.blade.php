@@ -26,9 +26,12 @@
 
 </head>
 <body>
+
+    <!-- ELEMENTO CHE CI PERMETTE DI PRENDERE DALL TAB USER, L ID CHE DELL'UTENTE LOGGATO, LO INSERIEMO NELL LAYOUT PER AVER IL DATO IN OGNI VIEWS -->
     @if (Auth::check())
          <meta name="user_id" content="{{ Auth::user()->id }}" />
-    @endif 
+    @endif
+
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm" style="z-index:999;">
             <div class="container">

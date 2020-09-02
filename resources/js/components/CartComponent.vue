@@ -31,6 +31,8 @@
                                 <input class="form-control col-md-6" type="text" name="nm-carta" placeholder="Numero Carta">
                                 <input class="form-control col-md-6 " type="text" name="exp-carta" placeholder="Scadenza Carta">
                                 <input class="form-control col-md-6" type="text" name="code-carta" placeholder="Codice Segreto">
+
+                                <!-- al click invio carrello all function payment -->
                                 <input @click='payment()' class="btn btn-primary col-md-6" name="" value="Paga">
                             </form>
                             <div class="credit">
@@ -66,7 +68,9 @@
 
         methods: {
             removeFromCart(index) {
-                this.$store.commit('removeFromCart', index);
+                console.log(index); // prende l' indice dell array di oggetti = nome + prezzo
+                // console.log(this.$store.state); // restituisce array degli oggetti nel carrello
+                this.$store.commit('removeFromCart', index); // rimuove il valore relativo all index
             },
 
             payment() {
@@ -74,7 +78,7 @@
               var cart = this.$store.state.cart;
               // console.log(cart); // carrello disponibile in tutto VUE
 
-              axios.post('api/checkout', cart) //
+              axios.post('api/checkout', cart) // chiamata post, endpoint e variabile
               .then(function (response) {
                console.log(response.config);
                // window.location.href = "checkout"; // simile al link
@@ -104,7 +108,8 @@
         top: 0;
         right: 0;
         height: 100%;
-        padding-top: 80px;
+        width: 500px;
+        padding-top: 150px;
         z-index: 0;
     }
 

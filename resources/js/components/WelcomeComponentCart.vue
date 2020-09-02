@@ -3,13 +3,21 @@
           <div v-for='(product, index) in products' :key='index' class="card">
               <h2>Nome: {{product.name}}</h2>
               <small>Prezzo: {{product.price}}</small>
+
+              <!-- al click sul visualizza apro la finestra con isOpen, invio all func productShow il prodotto ciclato a riga 3 -->
               <button @click='isOpen = !isOpen , productShow(product)' type="button" name="button">Visualizza</button>
               <div v-if='isOpen'>
                   <transition class="fade">
                       <div class="mask-overlay" @click="isOpen = !isOpen">
+
+                        <!-- .stop permette di non chiudere il PANEL creato al click sullo stesso -->
                         <div class="panel" @click.stop>
+
+                          <!-- stampo il product spedito alla function productShow -->
                             <h2>{{thisProduct.name}}</h2>
                             <p>{{thisProduct.price}}€</p>
+
+                            <!-- funzioni di carousel -->
                             <carousel :per-page="1" :autoplay="true" :mouse-drag="true">
                                 <slide>
                                     <img src="https://picsum.photos/200/300?random=1">
@@ -77,14 +85,14 @@
 
 
 <script>
-    import { Carousel, Slide } from 'vue-carousel';                             //Importo nel componente i tag slide e carousel dalla cartella node.js vue-carousel
+    import { Carousel, Slide } from 'vue-carousel';  //Importo nel componente i tag slide e carousel dalla cartella node.js vue-carousel
     export default {
         data() {
           return {
             products : [],
             thisProduct : {},
             cartProduct : [],
-            isOpen : false, // var sentinella +
+            isOpen : false, // var sentinella
           }
 
         },
@@ -105,20 +113,14 @@
         },
         methods: {
             productShow(product) {
-                this.thisProduct=item;
+                this.thisProduct=product;
+                // console.log(this.thisProduct);
             },
 
             addToCart(item) {
                 this.$store.commit('storeProduct', item);
             }
-            // sentToCart(item) {
-            //     this.cartProduct.push(item);
-            //     console.log('funzione sent to card: ' + this.cartProduct.length);
-            // },
 
-            // handleSlideClick (dataset) {
-            //    console.log(dataset.index, dataset.name)
-            // }
         },
 
         components: {
