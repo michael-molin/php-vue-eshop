@@ -26,6 +26,9 @@
 
 </head>
 <body>
+    @if (Auth::check())
+         <meta name="user_id" content="{{ Auth::user()->id }}" />
+    @endif 
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm" style="z-index:999;">
             <div class="container">

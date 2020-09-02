@@ -27,30 +27,17 @@ class ApiController extends Controller
 
     public function getCheckout(Request $request)
     {
-        $ciao = Auth::user()->id;
-        // dd($ciao);
-        $ciao2 = Auth::id();
-        dd($ciao2);
-
         $cart = $request->getContent();
-        // return response()->json($cart);
-
-        $cartDecode = json_decode($cart);
-        // dd($cartDecode);
-
+        $cart = json_decode($cart);
         $order = new Order;
-        $order['user_id'] = Auth::id();
-
-        $total = 0;
-        foreach ($cartDecode as $thisProduct) {
-          $total = $total + $thisProduct->price;
-          // $order->product()->attach($thisProduct->id);
-        }
-        $order['total'] = $total;
-        // $product->fill($data);
+        $user_idParse = $cart->userId;
+        $order['user_id'] = intval($user_idParse);
+        $total_parse = $cart->totalPrice;
+        $order['total'] = intval($total_parse);
         $order->save();
-
-
+        foreach ($cart->listProducts as $product) {
+            $order->product()->attach($product->id);
+        }
     }
 
     /**

@@ -1956,10 +1956,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['app'],
   data: function data() {
     return {
-      paymentsOpen: false
+      paymentsOpen: false,
+      userId: this.$userId
     };
   },
   mounted: function mounted() {//Si avvia solo alla creazione o montaggio del componente
@@ -1969,6 +1973,7 @@ __webpack_require__.r(__webpack_exports__);
       this.$store.commit('removeFromCart', index);
     },
     payment: function payment() {
+      this.$store.state.cart.userId = this.userId;
       var cart = this.$store.state.cart; // console.log(cart); // carrello disponibile in tutto VUE
 
       axios.post('api/checkout', cart) //
@@ -38767,10 +38772,33 @@ var render = function() {
   return _c("div", { staticClass: "navbar-item has-dropdown is-hoverable" }, [
     _c("div", [
       _c("i", { staticClass: "fas fa-shopping-cart" }),
-      _vm._v(" " + _vm._s(_vm.$store.state.cartCount) + "\n    ")
+      _vm._v(" " + _vm._s(_vm.$store.state.cart.cartCount) + "\n    ")
     ]),
     _vm._v(" "),
-    _vm.$store.state.cart.length > 0
+    _c("p", [_vm._v("user id")]),
+    _vm._v(" "),
+    _c("input", {
+      directives: [
+        {
+          name: "model",
+          rawName: "v-model",
+          value: _vm.userId,
+          expression: "userId"
+        }
+      ],
+      attrs: { type: "text", name: "userId" },
+      domProps: { value: _vm.userId },
+      on: {
+        input: function($event) {
+          if ($event.target.composing) {
+            return
+          }
+          _vm.userId = $event.target.value
+        }
+      }
+    }),
+    _vm._v(" "),
+    _vm.$store.state.cart.listProducts.length > 0
       ? _c(
           "div",
           {
@@ -38778,7 +38806,7 @@ var render = function() {
               "navbar-dropdown is-boxed is-right side-menu bg-white shadow-sm"
           },
           [
-            _vm._l(_vm.$store.state.cart, function(item, index) {
+            _vm._l(_vm.$store.state.cart.listProducts, function(item, index) {
               return _c("div", { key: index }, [
                 _c("span", { staticClass: "navbar-item" }, [
                   _vm._v(
@@ -38806,7 +38834,7 @@ var render = function() {
             _c("span", { staticClass: "navbar-item" }, [
               _vm._v(
                 "\n            Totale: " +
-                  _vm._s(_vm.$store.state.totalPrice) +
+                  _vm._s(_vm.$store.state.cart.totalPrice) +
                   "€\n        "
               )
             ]),
@@ -38857,7 +38885,7 @@ var render = function() {
                               _c("h3", [
                                 _vm._v(
                                   "Totale: " +
-                                    _vm._s(_vm.$store.state.totalPrice) +
+                                    _vm._s(_vm.$store.state.cart.totalPrice) +
                                     "€"
                                 )
                               ]),
@@ -38865,7 +38893,7 @@ var render = function() {
                               _c("h5", [
                                 _vm._v(
                                   "Numero Articoli: " +
-                                    _vm._s(_vm.$store.state.cartCount)
+                                    _vm._s(_vm.$store.state.cart.cartCount)
                                 )
                               ]),
                               _vm._v(" "),
@@ -52893,7 +52921,8 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('welcome-component', __webp
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('welcome-component-cart', __webpack_require__(/*! ./components/WelcomeComponentCart.vue */ "./resources/js/components/WelcomeComponentCart.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('welcome-component-admin', __webpack_require__(/*! ./components/WelcomeComponentAdmin.vue */ "./resources/js/components/WelcomeComponentAdmin.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('cart-component', __webpack_require__(/*! ./components/CartComponent.vue */ "./resources/js/components/CartComponent.vue")["default"]);
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_carousel__WEBPACK_IMPORTED_MODULE_1___default.a); //Definisco i componenti creati e utilizzo tramito use quelli già pre-impostati
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_carousel__WEBPACK_IMPORTED_MODULE_1___default.a);
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.prototype.$userId = document.querySelector("meta[name='user_id']").getAttribute('content'); //Definisco i componenti creati e utilizzo tramito use quelli già pre-impostati
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -53394,46 +53423,49 @@ var totalPrice = window.localStorage.getItem('totalPrice'); //Salvataggio pt3: i
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__["default"]);
 /* harmony default export */ __webpack_exports__["default"] = (new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
   state: {
-    cart: cart ? JSON.parse(cart) : [],
-    //Salvataggio pt4: operatore ternario, se Json.parse(cart) ESISTE, assume il valore del carrello. ALTRIMENTI è un array vuoto
-    cartCount: cartCount ? parseInt(cartCount) : 0,
-    //Salvataggio pt4: operatore ternario, se parseInt(cartCount) ESISTE, assume il valore del CartCount. ALTRIMENTI è 0
-    totalPrice: cartCount ? parseInt(totalPrice) : 0
+    cart: {
+      listProducts: cart ? JSON.parse(cart) : [],
+      //Salvataggio pt4: operatore ternario, se Json.parse(cart) ESISTE, assume il valore del carrello. ALTRIMENTI è un array vuoto
+      cartCount: cartCount ? parseInt(cartCount) : 0,
+      //Salvataggio pt4: operatore ternario, se parseInt(cartCount) ESISTE, assume il valore del CartCount. ALTRIMENTI è 0
+      totalPrice: cartCount ? parseInt(totalPrice) : 0,
+      userId: 0
+    }
   },
   getters: {},
   mutations: {
     storeProduct: function storeProduct(state, item) {
-      state.totalPrice = 0;
-      state.cart.push(item);
-      state.cartCount = state.cart.length;
+      state.cart.totalPrice = 0;
+      state.cart.listProducts.push(item);
+      state.cart.cartCount = state.cart.listProducts.length;
 
-      for (var i = 0; i < state.cart.length; i++) {
-        state.totalPrice += state.cart[i].price;
+      for (var i = 0; i < state.cart.listProducts.length; i++) {
+        state.cart.totalPrice += state.cart.listProducts[i].price;
       }
 
-      state.totalPrice = state.totalPrice.toFixed(2);
+      state.cart.totalPrice = state.cart.totalPrice.toFixed(2);
       this.commit('saveCart'); //Salvataggio pt1: Spedisce il contenuto alla mutazione saveCart
     },
     removeFromCart: function removeFromCart(state, index) {
       if (index > -1) {
-        state.cart.splice(index, 1);
-        state.cartCount = state.cart.length;
-        state.totalPrice = 0;
+        state.cart.listProducts.splice(index, 1);
+        state.cart.cartCount = state.cart.listProducts.length;
+        state.cart.totalPrice = 0;
 
-        for (var i = 0; i < state.cart.length; i++) {
-          state.totalPrice += state.cart[i].price;
+        for (var i = 0; i < state.cart.listProducts.length; i++) {
+          state.cart.totalPrice += state.cart.listProducts[i].price;
         }
 
-        state.totalPrice = state.totalPrice.toFixed(2);
+        state.cart.totalPrice = state.cart.totalPrice.toFixed(2);
         this.commit('saveCart');
       }
     },
     saveCart: function saveCart(state) {
-      window.localStorage.setItem('cart', JSON.stringify(state.cart)); //Salvataggio pt2: setta il tutto in uno storage della pagina del broweser sottoforma di Json
+      window.localStorage.setItem('cart', JSON.stringify(state.cart.listProducts)); //Salvataggio pt2: setta il tutto in uno storage della pagina del broweser sottoforma di Json
 
-      window.localStorage.setItem('cartCount', state.cartCount); //Salvataggio pt2: setta il tutto in uno storage della pagina del broweser
+      window.localStorage.setItem('cartCount', state.cart.cartCount); //Salvataggio pt2: setta il tutto in uno storage della pagina del broweser
 
-      window.localStorage.setItem('totalPrice', state.totalPrice); //Salvataggio pt2: setta il tutto in uno storage della pagina del broweser
+      window.localStorage.setItem('totalPrice', state.cart.totalPrice); //Salvataggio pt2: setta il tutto in uno storage della pagina del broweser
     }
   },
   actions: {}
@@ -53459,8 +53491,8 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\MAMP\htdocs\php-vue-eshop\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! D:\MAMP\htdocs\php-vue-eshop\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\MAMP\htdocs\php-vue-eshop\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\MAMP\htdocs\php-vue-eshop\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

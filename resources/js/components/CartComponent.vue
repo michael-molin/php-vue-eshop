@@ -1,16 +1,18 @@
 <template>
     <div class="navbar-item has-dropdown is-hoverable">
         <div>
-            <i class="fas fa-shopping-cart"></i> {{ $store.state.cartCount }}
+            <i class="fas fa-shopping-cart"></i> {{ $store.state.cart.cartCount }}
         </div>
-        <div v-if="$store.state.cart.length > 0" class="navbar-dropdown is-boxed is-right side-menu bg-white shadow-sm">
-            <div v-for="(item,index) in $store.state.cart" :key="index">
+        <p>user id</p>
+        <input type="text" name="userId" v-model="userId">
+        <div v-if="$store.state.cart.listProducts.length > 0" class="navbar-dropdown is-boxed is-right side-menu bg-white shadow-sm">
+            <div v-for="(item,index) in $store.state.cart.listProducts" :key="index">
                 <span  class="navbar-item"> {{ item.name }} - {{ item.price }}€</span>
                 <span class="removeBtn" @click="removeFromCart(index)">X</span>
             </div>
             <br>
             <span class="navbar-item">
-                Totale: {{ $store.state.totalPrice }}€
+                Totale: {{ $store.state.cart.totalPrice }}€
             </span>
             <hr class="navbar-divider">
             <span class="navbar-item" @click="paymentsOpen = !paymentsOpen" style="cursor:pointer;">
@@ -22,8 +24,8 @@
                     <div class="mask-overlay" @click="paymentsOpen = !paymentsOpen">
                       <!-- click.stop = ferma esecuzione click mouse, evita che si chiuda cliccando il modale -->
                       <div class="panel" @click.stop>
-                        <h3>Totale: {{ $store.state.totalPrice }}€</h3>
-                        <h5>Numero Articoli: {{ $store.state.cartCount }}</h5>
+                        <h3>Totale: {{ $store.state.cart.totalPrice }}€</h3>
+                        <h5>Numero Articoli: {{ $store.state.cart.cartCount }}</h5>
                         <div class="form-group text-center">
                             <form>
                                 <input class="form-control col-md-6" type="text" name="nm-carta" placeholder="Numero Carta">
@@ -49,9 +51,11 @@
 <script>
 
     export default {
+        props: ['app'],
         data() {
             return {
-                paymentsOpen : false
+                paymentsOpen : false,
+                userId: this.$userId
             }
         },
 
@@ -66,6 +70,7 @@
             },
 
             payment() {
+              this.$store.state.cart.userId = this.userId;
               var cart = this.$store.state.cart;
               // console.log(cart); // carrello disponibile in tutto VUE
 
