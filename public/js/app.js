@@ -1944,31 +1944,30 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
-    return {};
+    return {
+      paymentsOpen: false
+    };
   },
   mounted: function mounted() {//Si avvia solo alla creazione o montaggio del componente
   },
   methods: {
-    removeFromCart: function removeFromCart(item) {
-      this.$store.commit('removeFromCart', item);
+    removeFromCart: function removeFromCart(index) {
+      this.$store.commit('removeFromCart', index);
     },
     toCheckout: function toCheckout(cart) {
-      // let data = {
-      //     cart: JSON.stringify(this.$store.state)
-      // }
-      // axios.post('checkout', data);
-      axios({
-        method: 'post',
-        url: 'api/checkout',
-        data: {
-          cart: JSON.stringify(this.$store.state.cart)
-        }
-      }).then(function (response) {
-        console.log(response);
+      axios.post('api/checkout', cart).then(function (response) {
+        console.log(response.config); // window.location.href = "checkout";
       })["catch"](function (error) {
-        console.log('checkout ' + error);
+        console.log(error);
       });
     }
   }
@@ -6856,7 +6855,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.removeBtn {\n    margin-right: 1rem;\n    color: red;\n}\n", ""]);
+exports.push([module.i, "\n.removeBtn {\n    margin-right: 1rem;\n    color: red;\n    cursor: pointer;\n}\n.side-menu {\n    position: fixed;\n    top: 0;\n    right: 0;\n    height: 100%;\n    padding-top: 80px;\n    z-index: 0;\n}\n.mask-overlay{\n        position: fixed;\n        z-index: 9998;\n        top: 0px;\n        left: 0;\n        width: 100vw;\n        height: 100vh;\n        background-color: rgba(0, 0, 0, 0.9);\n        display:flex;\n        justify-content: center;\n        align-items: center;\n}\n.panel {\n        z-index: 9999;\n        text-align: center;\n        width: 85vw;\n        height: 85vh;\n        margin: 0 auto;\n        padding: 20px 30px;\n        background-color: #fff;\n        border-radius: 2px;\n        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);\n        transition: all 0.3s ease;\n        font-family: Helvetica, Arial, sans-serif;\n}\n\n", ""]);
 
 // exports
 
@@ -38758,65 +38757,166 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "navbar-item has-dropdown is-hoverable" }, [
-    _c("a", { staticClass: "navbar-link", attrs: { href: "" } }, [
-      _vm._v("\n        Cart " + _vm._s(_vm.$store.state.cartCount) + "\n    ")
+    _c("div", [
+      _c("i", { staticClass: "fas fa-shopping-cart" }),
+      _vm._v(" " + _vm._s(_vm.$store.state.cartCount) + "\n    ")
     ]),
     _vm._v(" "),
     _vm.$store.state.cart.length > 0
       ? _c(
           "div",
-          { staticClass: "navbar-dropdown is-boxed is-right" },
+          {
+            staticClass:
+              "navbar-dropdown is-boxed is-right side-menu bg-white shadow-sm"
+          },
           [
             _vm._l(_vm.$store.state.cart, function(item, index) {
-              return _c(
-                "a",
-                { key: index, staticClass: "navbar-item", attrs: { href: "" } },
-                [
+              return _c("div", { key: index }, [
+                _c("span", { staticClass: "navbar-item" }, [
                   _vm._v(
-                    "\n            " +
-                      _vm._s(item.name) +
-                      " - $" +
-                      _vm._s(item.price) +
-                      " "
-                  ),
-                  _c("br")
-                ]
-              )
+                    " " + _vm._s(item.name) + " - " + _vm._s(item.price) + "€"
+                  )
+                ]),
+                _vm._v(" "),
+                _c(
+                  "span",
+                  {
+                    staticClass: "removeBtn",
+                    on: {
+                      click: function($event) {
+                        return _vm.removeFromCart(index)
+                      }
+                    }
+                  },
+                  [_vm._v("X")]
+                )
+              ])
             }),
             _vm._v(" "),
             _c("br"),
             _vm._v(" "),
-            _c("a", { staticClass: "navbar-item", attrs: { href: "" } }, [
+            _c("span", { staticClass: "navbar-item" }, [
               _vm._v(
-                "\n            Total: $" +
+                "\n            Totale: " +
                   _vm._s(_vm.$store.state.totalPrice) +
-                  "\n        "
+                  "€\n        "
               )
             ]),
             _vm._v(" "),
             _c("hr", { staticClass: "navbar-divider" }),
             _vm._v(" "),
             _c(
-              "a",
+              "span",
               {
                 staticClass: "navbar-item",
-                attrs: { href: "" },
+                staticStyle: { cursor: "pointer" },
                 on: {
                   click: function($event) {
-                    return _vm.toCheckout(_vm.$store.state)
+                    _vm.paymentsOpen = !_vm.paymentsOpen
                   }
                 }
               },
               [_vm._v("\n            Checkout\n        ")]
-            )
+            ),
+            _vm._v(" "),
+            _vm.paymentsOpen
+              ? _c(
+                  "div",
+                  [
+                    _c("transition", { staticClass: "fade" }, [
+                      _c(
+                        "div",
+                        {
+                          staticClass: "mask-overlay",
+                          on: {
+                            click: function($event) {
+                              _vm.paymentsOpen = !_vm.paymentsOpen
+                            }
+                          }
+                        },
+                        [
+                          _c(
+                            "div",
+                            {
+                              staticClass: "panel",
+                              on: {
+                                click: function($event) {
+                                  $event.stopPropagation()
+                                }
+                              }
+                            },
+                            [
+                              _c("h3", [
+                                _vm._v(
+                                  "Totale: " +
+                                    _vm._s(_vm.$store.state.totalPrice) +
+                                    "€"
+                                )
+                              ]),
+                              _vm._v(" "),
+                              _c("h5", [
+                                _vm._v(
+                                  "Numero Articoli: " +
+                                    _vm._s(_vm.$store.state.cartCount)
+                                )
+                              ]),
+                              _vm._v(" "),
+                              _c(
+                                "div",
+                                { staticClass: "form-group text-center" },
+                                [
+                                  _c("form", [
+                                    _c("input", {
+                                      staticClass: "form-control col-md-6",
+                                      attrs: {
+                                        type: "text",
+                                        name: "nm-carta",
+                                        placeholder: "Numero Carta"
+                                      }
+                                    }),
+                                    _vm._v(" "),
+                                    _c("input", {
+                                      staticClass: "form-control col-md-6 ",
+                                      attrs: {
+                                        type: "text",
+                                        name: "exp-carta",
+                                        placeholder: "Scadenza Carta"
+                                      }
+                                    }),
+                                    _vm._v(" "),
+                                    _c("input", {
+                                      staticClass: "form-control col-md-6",
+                                      attrs: {
+                                        type: "text",
+                                        name: "code-carta",
+                                        placeholder: "Codice Segreto"
+                                      }
+                                    }),
+                                    _vm._v(" "),
+                                    _c("input", {
+                                      staticClass: "btn btn-primary",
+                                      attrs: {
+                                        type: "submit",
+                                        name: "",
+                                        value: "Paga"
+                                      }
+                                    })
+                                  ])
+                                ]
+                              )
+                            ]
+                          )
+                        ]
+                      )
+                    ])
+                  ],
+                  1
+                )
+              : _vm._e()
           ],
           2
         )
-      : _c("div", { staticClass: "navbar-dropdown is-boxed is-right" }, [
-          _c("a", { staticClass: "navbar-item", attrs: { href: "" } }, [
-            _vm._v("\n            Cart is empty\n        ")
-          ])
-        ])
+      : _vm._e()
   ])
 }
 var staticRenderFns = []
@@ -52838,15 +52938,14 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /*!***************************************************!*\
   !*** ./resources/js/components/CartComponent.vue ***!
   \***************************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _CartComponent_vue_vue_type_template_id_e7ab8a3c___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CartComponent.vue?vue&type=template&id=e7ab8a3c& */ "./resources/js/components/CartComponent.vue?vue&type=template&id=e7ab8a3c&");
 /* harmony import */ var _CartComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CartComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/CartComponent.vue?vue&type=script&lang=js&");
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _CartComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _CartComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var _CartComponent_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./CartComponent.vue?vue&type=style&index=0&lang=css& */ "./resources/js/components/CartComponent.vue?vue&type=style&index=0&lang=css&");
+/* empty/unused harmony star reexport *//* harmony import */ var _CartComponent_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./CartComponent.vue?vue&type=style&index=0&lang=css& */ "./resources/js/components/CartComponent.vue?vue&type=style&index=0&lang=css&");
 /* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -52878,7 +52977,7 @@ component.options.__file = "resources/js/components/CartComponent.vue"
 /*!****************************************************************************!*\
   !*** ./resources/js/components/CartComponent.vue?vue&type=script&lang=js& ***!
   \****************************************************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -53287,7 +53386,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
     storeProduct: function storeProduct(state, item) {
       state.totalPrice = 0;
       state.cart.push(item);
-      state.cartCount++;
+      state.cartCount = state.cart.length;
 
       for (var i = 0; i < state.cart.length; i++) {
         state.totalPrice += state.cart[i].price;
@@ -53296,23 +53395,27 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
       state.totalPrice = state.totalPrice.toFixed(2);
       this.commit('saveCart'); //Salvataggio pt1: Spedisce il contenuto alla mutazione saveCart
     },
+    removeFromCart: function removeFromCart(state, index) {
+      if (index > -1) {
+        state.cart.splice(index, 1);
+        state.cartCount = state.cart.length;
+        state.totalPrice = 0;
+
+        for (var i = 0; i < state.cart.length; i++) {
+          state.totalPrice += state.cart[i].price;
+        }
+
+        state.totalPrice = state.totalPrice.toFixed(2);
+        this.commit('saveCart');
+      }
+    },
     saveCart: function saveCart(state) {
       window.localStorage.setItem('cart', JSON.stringify(state.cart)); //Salvataggio pt2: setta il tutto in uno storage della pagina del broweser sottoforma di Json
 
       window.localStorage.setItem('cartCount', state.cartCount); //Salvataggio pt2: setta il tutto in uno storage della pagina del broweser
 
       window.localStorage.setItem('totalPrice', state.totalPrice); //Salvataggio pt2: setta il tutto in uno storage della pagina del broweser
-    } // removeFromCart(state, item) {
-    //     let index = state.cart.indexOf(item);
-    //
-    //     if (index > -1) {
-    //         let product = state.cart[index];
-    //         state.cartCount -= product.quantity;
-    //
-    //         state.cart.splice(index, 1);
-    //     }
-    // }
-
+    }
   },
   actions: {}
 }));

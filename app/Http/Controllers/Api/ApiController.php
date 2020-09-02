@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Api;
 use App\Product;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\Session;
 
 class ApiController extends Controller
 {
@@ -20,9 +22,10 @@ class ApiController extends Controller
 
     public function getCheckout(Request $request)
     {
-        $checkout= $request;
-        dd($checkout);
-        return response()->json($products);
+        $cart = $request->getContent();
+        $cart= json_decode($cart);
+        // return response()->json($cart);
+        return view('checkout' , compact('cart'));
     }
 
     /**

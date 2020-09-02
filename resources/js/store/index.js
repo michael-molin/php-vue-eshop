@@ -18,28 +18,33 @@ export default new Vuex.Store({
         storeProduct(state, item) {
             state.totalPrice= 0;
             state.cart.push(item);
-            state.cartCount++;
+            state.cartCount= state.cart.length;
             for (var i = 0; i < state.cart.length; i++) {
                 state.totalPrice += state.cart[i].price;
             }
             state.totalPrice = state.totalPrice.toFixed(2);
             this.commit('saveCart');                                            //Salvataggio pt1: Spedisce il contenuto alla mutazione saveCart
         },
+
+        removeFromCart(state, index) {
+
+            if (index > -1) {
+                state.cart.splice(index, 1);
+                state.cartCount= state.cart.length;
+                state.totalPrice= 0;
+                for (var i = 0; i < state.cart.length; i++) {
+                    state.totalPrice += state.cart[i].price;
+                }
+                state.totalPrice = state.totalPrice.toFixed(2);
+                this.commit('saveCart');
+            }
+        },
+
         saveCart(state) {
             window.localStorage.setItem('cart', JSON.stringify(state.cart));    //Salvataggio pt2: setta il tutto in uno storage della pagina del broweser sottoforma di Json
             window.localStorage.setItem('cartCount', state.cartCount);          //Salvataggio pt2: setta il tutto in uno storage della pagina del broweser
             window.localStorage.setItem('totalPrice', state.totalPrice);          //Salvataggio pt2: setta il tutto in uno storage della pagina del broweser
-        }
-        // removeFromCart(state, item) {
-        //     let index = state.cart.indexOf(item);
-        //
-        //     if (index > -1) {
-        //         let product = state.cart[index];
-        //         state.cartCount -= product.quantity;
-        //
-        //         state.cart.splice(index, 1);
-        //     }
-        // }
+        },
     },
  actions: {}
 });
