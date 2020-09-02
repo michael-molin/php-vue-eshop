@@ -16,7 +16,7 @@ class Order extends Model
         return $this->belongsTo('App\User');
     }
 
-    public function product()
+    public function product() // PARLA CON LA TAB PIVOT
    {
        return $this->belongsToMany('App\Product');
    }

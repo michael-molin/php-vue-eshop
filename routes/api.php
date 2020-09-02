@@ -18,5 +18,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('products' , "Api\ApiController@getProducts");  // nome variabile / funzione all'interno del controller / nome rotta
+Route::get('products' , "Api\ApiController@getProducts");  // uri / funzione all'interno del controller / nome rotta
 Route::post('checkout' , "Api\ApiController@getCheckout");

@@ -5,7 +5,12 @@ use App\Product;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cookie;
-use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Session;use Illuminate\Support\Facades\Auth;
+
+
+use App\User;
+use App\Order;
+
 
 class ApiController extends Controller
 {
@@ -22,10 +27,30 @@ class ApiController extends Controller
 
     public function getCheckout(Request $request)
     {
+        $ciao = Auth::user()->id;
+        // dd($ciao);
+        $ciao2 = Auth::id();
+        dd($ciao2);
+
         $cart = $request->getContent();
-        $cart= json_decode($cart);
         // return response()->json($cart);
-        return view('checkout' , compact('cart'));
+
+        $cartDecode = json_decode($cart);
+        // dd($cartDecode);
+
+        $order = new Order;
+        $order['user_id'] = Auth::id();
+
+        $total = 0;
+        foreach ($cartDecode as $thisProduct) {
+          $total = $total + $thisProduct->price;
+          // $order->product()->attach($thisProduct->id);
+        }
+        $order['total'] = $total;
+        // $product->fill($data);
+        $order->save();
+
+
     }
 
     /**

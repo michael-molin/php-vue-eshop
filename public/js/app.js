@@ -1951,6 +1951,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -1963,9 +1968,12 @@ __webpack_require__.r(__webpack_exports__);
     removeFromCart: function removeFromCart(index) {
       this.$store.commit('removeFromCart', index);
     },
-    toCheckout: function toCheckout(cart) {
-      axios.post('api/checkout', cart).then(function (response) {
-        console.log(response.config); // window.location.href = "checkout";
+    payment: function payment() {
+      var cart = this.$store.state.cart; // console.log(cart); // carrello disponibile in tutto VUE
+
+      axios.post('api/checkout', cart) //
+      .then(function (response) {
+        console.log(response.config); // window.location.href = "checkout"; // simile al link
       })["catch"](function (error) {
         console.log(error);
       });
@@ -6855,7 +6863,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.removeBtn {\n    margin-right: 1rem;\n    color: red;\n    cursor: pointer;\n}\n.side-menu {\n    position: fixed;\n    top: 0;\n    right: 0;\n    height: 100%;\n    padding-top: 80px;\n    z-index: 0;\n}\n.mask-overlay{\n        position: fixed;\n        z-index: 9998;\n        top: 0px;\n        left: 0;\n        width: 100vw;\n        height: 100vh;\n        background-color: rgba(0, 0, 0, 0.9);\n        display:flex;\n        justify-content: center;\n        align-items: center;\n}\n.panel {\n        z-index: 9999;\n        text-align: center;\n        width: 85vw;\n        height: 85vh;\n        margin: 0 auto;\n        padding: 20px 30px;\n        background-color: #fff;\n        border-radius: 2px;\n        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);\n        transition: all 0.3s ease;\n        font-family: Helvetica, Arial, sans-serif;\n}\n\n", ""]);
+exports.push([module.i, "\n.removeBtn {\n    margin-right: 1rem;\n    color: red;\n    cursor: pointer;\n}\n.side-menu {\n    position: fixed;\n    top: 0;\n    right: 0;\n    height: 100%;\n    padding-top: 80px;\n    z-index: 0;\n}\n.mask-overlay{\n        position: fixed;\n        z-index: 9998;\n        top: 0px;\n        left: 0;\n        width: 100vw;\n        height: 100vh;\n        background-color: rgba(0, 0, 0, 0.9);\n        display:flex;\n        justify-content: center;\n        align-items: center;\n}\n.panel {\n        z-index: 9999;\n        text-align: center;\n        width: 85vw;\n        height: 85vh;\n        margin: 0 auto;\n        padding: 20px 30px;\n        background-color: #fff;\n        border-radius: 2px;\n        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);\n        transition: all 0.3s ease;\n        font-family: Helvetica, Arial, sans-serif;\n}\nform {\n      display: flex;\n      flex-direction: column;\n      align-items: center;\n}\nform input {\n      margin: 10px;\n}\n.credit .fab {\n      font-size: 50px;\n      padding: 5px;\n      color: #3490dc;\n      cursor: pointer;\n}\n.credit .fab:hover {\n      color: blue;\n}\n\n", ""]);
 
 // exports
 
@@ -38894,13 +38902,24 @@ var render = function() {
                                     }),
                                     _vm._v(" "),
                                     _c("input", {
-                                      staticClass: "btn btn-primary",
-                                      attrs: {
-                                        type: "submit",
-                                        name: "",
-                                        value: "Paga"
+                                      staticClass: "btn btn-primary col-md-6",
+                                      attrs: { name: "", value: "Paga" },
+                                      on: {
+                                        click: function($event) {
+                                          return _vm.payment()
+                                        }
                                       }
                                     })
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "credit" }, [
+                                    _c("i", {
+                                      staticClass: "fab fa-cc-mastercard"
+                                    }),
+                                    _vm._v(" "),
+                                    _c("i", { staticClass: "fab fa-cc-visa" }),
+                                    _vm._v(" "),
+                                    _c("i", { staticClass: "fab fa-paypal" })
                                   ])
                                 ]
                               )
@@ -53440,8 +53459,8 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\MAMP\htdocs\php-vue-eshop\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\MAMP\htdocs\php-vue-eshop\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! D:\MAMP\htdocs\php-vue-eshop\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! D:\MAMP\htdocs\php-vue-eshop\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

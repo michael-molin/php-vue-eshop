@@ -20,6 +20,7 @@
             <div v-if='paymentsOpen'>
                 <transition class="fade">
                     <div class="mask-overlay" @click="paymentsOpen = !paymentsOpen">
+                      <!-- click.stop = ferma esecuzione click mouse, evita che si chiuda cliccando il modale -->
                       <div class="panel" @click.stop>
                         <h3>Totale: {{ $store.state.totalPrice }}€</h3>
                         <h5>Numero Articoli: {{ $store.state.cartCount }}</h5>
@@ -28,10 +29,14 @@
                                 <input class="form-control col-md-6" type="text" name="nm-carta" placeholder="Numero Carta">
                                 <input class="form-control col-md-6 " type="text" name="exp-carta" placeholder="Scadenza Carta">
                                 <input class="form-control col-md-6" type="text" name="code-carta" placeholder="Codice Segreto">
-                                <input class="btn btn-primary" type="submit" name="" value="Paga">
+                                <input @click='payment()' class="btn btn-primary col-md-6" name="" value="Paga">
                             </form>
+                            <div class="credit">
+                              <i class="fab fa-cc-mastercard"></i>
+                              <i class="fab fa-cc-visa"></i>
+                              <i class="fab fa-paypal"></i>
+                            </div>
                         </div>
-
                       </div>
                   </div>
                 </transition>
@@ -60,16 +65,23 @@
                 this.$store.commit('removeFromCart', index);
             },
 
-            toCheckout(cart) {
-                axios.post('api/checkout', cart)
-                .then(function (response ) {
-                 console.log(response.config);
-                 // window.location.href = "checkout";
-                })
-                .catch(function (error) {
-                    console.log(error);
-                })
-            }
+            payment() {
+              var cart = this.$store.state.cart;
+              // console.log(cart); // carrello disponibile in tutto VUE
+
+              axios.post('api/checkout', cart) //
+              .then(function (response) {
+               console.log(response.config);
+               // window.location.href = "checkout"; // simile al link
+              })
+              .catch(function (error) {
+                  console.log(error);
+              })
+
+
+            },
+
+
         }
     }
 </script>
@@ -116,6 +128,28 @@
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
             transition: all 0.3s ease;
             font-family: Helvetica, Arial, sans-serif;
+        }
+
+        form {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+
+        }
+
+        form input {
+          margin: 10px;
+        }
+
+        .credit .fab {
+          font-size: 50px;
+          padding: 5px;
+          color: #3490dc;
+          cursor: pointer;
+        }
+
+        .credit .fab:hover {
+          color: blue;
         }
 
 </style>
