@@ -12,18 +12,18 @@
         <transition class="fade">
             <div class="mask-overlay" @click="isOpen = !isOpen">
                 <div class="panel" @click.stop>
-                    <h2>{{thisProduct.name}}</h2>
-                    <p>{{thisProduct.price}}€</p>
+                     <h2>{{thisProduct.name}}</h2>
+                     <p>{{thisProduct.price}}€</p>
                     <carousel :per-page="1" :autoplay="true" :mouse-drag="true">
-                        <slide>
-                            <img src="https://picsum.photos/200/300?random=1">
-                        </slide>
-                        <slide>
-                           <img src="https://picsum.photos/200/300?random=2">
-                        </slide>
-                  </carousel>
-                    <p>{{thisProduct.description}}</p>
-                    <p>In magazzino: {{thisProduct.stock}}</p>
+                          <slide>
+                              <img :src='thisProduct.photo'>
+                          </slide>
+                          <slide>
+                             <img :src='thisProduct.photo'>
+                          </slide>
+                    </carousel>
+                     <p>{{thisProduct.description}}</p>
+                     <p>In magazzino: {{thisProduct.stock}}</p>
                 </div>
             </div>
         </transition>
@@ -65,7 +65,7 @@
 
 
 <script>
-    import { Carousel, Slide } from 'vue-carousel';   
+    import { Carousel, Slide } from 'vue-carousel';
     export default {
         data() {
           return {

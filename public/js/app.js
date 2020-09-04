@@ -1960,6 +1960,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['app'],
   data: function data() {
@@ -2047,6 +2052,10 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue_carousel__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-carousel */ "./node_modules/vue-carousel/dist/vue-carousel.min.js");
 /* harmony import */ var vue_carousel__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue_carousel__WEBPACK_IMPORTED_MODULE_0__);
+//
+//
+//
+//
 //
 //
 //
@@ -6884,7 +6893,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.removeBtn {\n    margin-right: 1rem;\n    color: red;\n    cursor: pointer;\n}\n.side-menu {\n    position: fixed;\n    top: 0;\n    right: 0;\n    height: 100%;\n    width: 500px;\n    padding-top: 150px;\n    z-index: 0;\n}\n.mask-overlay{\n        position: fixed;\n        z-index: 9998;\n        top: 0px;\n        left: 0;\n        width: 100vw;\n        height: 100vh;\n        background-color: rgba(0, 0, 0, 0.9);\n        display:flex;\n        justify-content: center;\n        align-items: center;\n}\n.panel {\n        z-index: 9999;\n        text-align: center;\n        width: 85vw;\n        height: 85vh;\n        margin: 0 auto;\n        padding: 20px 30px;\n        background-color: #fff;\n        border-radius: 2px;\n        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);\n        transition: all 0.3s ease;\n        font-family: Helvetica, Arial, sans-serif;\n}\nform {\n      display: flex;\n      flex-direction: column;\n      align-items: center;\n}\nform input {\n      margin: 10px;\n}\n.credit .fab {\n      font-size: 50px;\n      padding: 5px;\n      color: #3490dc;\n      cursor: pointer;\n}\n.credit .fab:hover {\n      color: blue;\n}\n\n", ""]);
+exports.push([module.i, "\n.removeBtn {\n    margin-right: 1rem;\n    color: red;\n    cursor: pointer;\n}\n.side-menu {\n    position: fixed;\n    top: 0;\n    right: 0;\n    height: 100%;\n    width: 500px;\n    padding-top: 150px;\n    z-index: 0;\n}\n.mask-overlay{\n        position: fixed;\n        z-index: 9998;\n        top: 0px;\n        left: 0;\n        width: 100vw;\n        height: 100vh;\n        background-color: rgba(0, 0, 0, 0.9);\n        display:flex;\n        justify-content: center;\n        align-items: center;\n}\n.panel {\n        z-index: 9999;\n        text-align: center;\n        width: 85vw;\n        height: 85vh;\n        margin: 0 auto;\n        padding: 20px 30px;\n        background-color: #fff;\n        border-radius: 2px;\n        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);\n        transition: all 0.3s ease;\n        font-family: Helvetica, Arial, sans-serif;\n}\nform {\n      display: flex;\n      flex-direction: column;\n      align-items: center;\n}\nform input {\n      margin: 10px;\n}\n.credit .fab {\n      font-size: 50px;\n      padding: 5px;\n      color: #3490dc;\n      cursor: pointer;\n}\n.credit .fab:hover {\n      color: blue;\n}\n.box-article {\n      display: flex;\n      justify-content: space-around;\n      align-items: center;\n      margin-bottom: 3px;\n      background-color: white;\n      border: 1px solid rgba(0,0,0,0.1);\n      height: 50px;\n}\n.fa-times {\n      color: red;\n      font-size: 20px;\n}\n\n", ""]);
 
 // exports
 
@@ -38822,51 +38831,56 @@ var render = function() {
           [
             _vm._l(_vm.$store.state.cart.listProducts, function(item, index) {
               return _c("div", { key: index }, [
-                _c("span", { staticClass: "navbar-item" }, [
-                  _vm._v(
-                    " " + _vm._s(item.name) + " - " + _vm._s(item.price) + "€"
-                  )
-                ]),
-                _vm._v(" "),
-                _c(
-                  "span",
-                  {
-                    staticClass: "removeBtn",
-                    on: {
-                      click: function($event) {
-                        return _vm.removeFromCart(index)
+                _c("div", { staticClass: "box-article" }, [
+                  _c("span", { staticClass: "navbar-item" }, [
+                    _vm._v(
+                      " " + _vm._s(item.name) + " - " + _vm._s(item.price) + "€"
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "span",
+                    {
+                      staticClass: "removeBtn",
+                      on: {
+                        click: function($event) {
+                          return _vm.removeFromCart(index)
+                        }
                       }
-                    }
-                  },
-                  [_vm._v("X")]
-                )
+                    },
+                    [_c("i", { staticClass: "fas fa-times" })]
+                  )
+                ])
               ])
             }),
             _vm._v(" "),
             _c("br"),
             _vm._v(" "),
             _c("span", { staticClass: "navbar-item" }, [
-              _vm._v(
-                "\n            Totale: " +
-                  _vm._s(_vm.$store.state.cart.totalPrice) +
-                  "€\n        "
-              )
+              _c("div", { staticClass: "box-article" }, [
+                _vm._v(
+                  "\n              Totale: " +
+                    _vm._s(_vm.$store.state.cart.totalPrice) +
+                    "€\n            "
+                )
+              ])
             ]),
             _vm._v(" "),
             _c("hr", { staticClass: "navbar-divider" }),
             _vm._v(" "),
             _c(
-              "span",
+              "div",
               {
-                staticClass: "navbar-item",
+                staticClass: "box-article navbar-item",
                 staticStyle: { cursor: "pointer" },
+                attrs: { class: "box-article navbar-item" },
                 on: {
                   click: function($event) {
                     _vm.paymentsOpen = !_vm.paymentsOpen
                   }
                 }
               },
-              [_vm._v("\n            Checkout\n        ")]
+              [_c("span", [_vm._v("\n              Checkout\n          ")])]
             ),
             _vm._v(" "),
             _vm.paymentsOpen
@@ -39053,7 +39067,7 @@ var render = function() {
     "div",
     { staticClass: "container" },
     _vm._l(_vm.products, function(product, index) {
-      return _c("div", { key: index, staticClass: "card" }, [
+      return _c("div", { key: index, staticClass: "card container-product" }, [
         _c("h2", [_vm._v("Nome: " + _vm._s(product.name))]),
         _vm._v(" "),
         _c("small", [_vm._v("Prezzo: " + _vm._s(product.price))]),
@@ -39118,19 +39132,13 @@ var render = function() {
                             [
                               _c("slide", [
                                 _c("img", {
-                                  attrs: {
-                                    src:
-                                      "https://picsum.photos/200/300?random=1"
-                                  }
+                                  attrs: { src: _vm.thisProduct.photo }
                                 })
                               ]),
                               _vm._v(" "),
                               _c("slide", [
                                 _c("img", {
-                                  attrs: {
-                                    src:
-                                      "https://picsum.photos/200/300?random=2"
-                                  }
+                                  attrs: { src: _vm.thisProduct.photo }
                                 })
                               ])
                             ],
@@ -39254,19 +39262,13 @@ var render = function() {
                             [
                               _c("slide", [
                                 _c("img", {
-                                  attrs: {
-                                    src:
-                                      "https://picsum.photos/200/300?random=1"
-                                  }
+                                  attrs: { src: _vm.thisProduct.photo }
                                 })
                               ]),
                               _vm._v(" "),
                               _c("slide", [
                                 _c("img", {
-                                  attrs: {
-                                    src:
-                                      "https://picsum.photos/200/300?random=2"
-                                  }
+                                  attrs: { src: _vm.thisProduct.photo }
                                 })
                               ])
                             ],
@@ -39388,19 +39390,13 @@ var render = function() {
                             [
                               _c("slide", [
                                 _c("img", {
-                                  attrs: {
-                                    src:
-                                      "https://picsum.photos/200/300?random=1"
-                                  }
+                                  attrs: { src: _vm.thisProduct.photo }
                                 })
                               ]),
                               _vm._v(" "),
                               _c("slide", [
                                 _c("img", {
-                                  attrs: {
-                                    src:
-                                      "https://picsum.photos/200/300?random=2"
-                                  }
+                                  attrs: { src: _vm.thisProduct.photo }
                                 })
                               ])
                             ],
@@ -52936,13 +52932,13 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('welcome-component-cart', _
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('welcome-component-admin', __webpack_require__(/*! ./components/WelcomeComponentAdmin.vue */ "./resources/js/components/WelcomeComponentAdmin.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('cart-component', __webpack_require__(/*! ./components/CartComponent.vue */ "./resources/js/components/CartComponent.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_carousel__WEBPACK_IMPORTED_MODULE_1___default.a);
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.prototype.$userId = document.querySelector("meta[name='user_id']").getAttribute('content'); //Definisco i componenti creati e utilizzo tramito use quelli già pre-impostati
-
-/**
- * Next, we will create a fresh Vue application instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.prototype.$userId = document.querySelector("meta[name='user_id']").getAttribute('content'); // invio la lo userId dell utente loggato
+//Definisco i componenti creati e utilizzo tramito use quelli già pre-impostati
+// /**
+//  * Next, we will create a fresh Vue application instance and attach it to
+//  * the page. Then, you may begin adding components to this application
+//  * or customize the JavaScript scaffolding to fit your unique needs.
+//  * /
 
 var app = new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
   store: _store__WEBPACK_IMPORTED_MODULE_2__["default"],
@@ -53515,8 +53511,8 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\MAMP\htdocs\php-vue-eshop\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\MAMP\htdocs\php-vue-eshop\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! D:\MAMP\htdocs\php-vue-eshop\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! D:\MAMP\htdocs\php-vue-eshop\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

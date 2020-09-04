@@ -8,18 +8,23 @@
 
             <!-- con la VAR $store, entro dentro state del file index.js -->
             <div v-for="(item,index) in $store.state.cart.listProducts" :key="index">
-                <span  class="navbar-item"> {{ item.name }} - {{ item.price }}€</span>
-                <span class="removeBtn" @click="removeFromCart(index)">X</span>
+                <div class="box-article">
+                  <span  class="navbar-item"> {{ item.name }} - {{ item.price }}€</span>
+                  <span class="removeBtn" @click="removeFromCart(index)"><i class="fas fa-times"></i></span>
+                </div>
             </div>
             <br>
             <span class="navbar-item">
-                Totale: {{ $store.state.cart.totalPrice }}€
+                <div class="box-article">
+                  Totale: {{ $store.state.cart.totalPrice }}€
+                </div>
             </span>
             <hr class="navbar-divider">
-            <span class="navbar-item" @click="paymentsOpen = !paymentsOpen" style="cursor:pointer;">
-                Checkout
-            </span>
-
+            <div class="" class="box-article navbar-item" @click="paymentsOpen = !paymentsOpen" style="cursor:pointer;">
+              <span >
+                  Checkout
+              </span>
+            </div>
             <div v-if='paymentsOpen'>
                 <transition class="fade">
                     <div class="mask-overlay" @click="paymentsOpen = !paymentsOpen">
@@ -168,6 +173,21 @@
 
         .credit .fab:hover {
           color: blue;
+        }
+
+        .box-article {
+          display: flex;
+          justify-content: space-around;
+          align-items: center;
+          margin-bottom: 3px;
+          background-color: white;
+          border: 1px solid rgba(0,0,0,0.1);
+          height: 50px;
+        }
+
+        .fa-times {
+          color: red;
+          font-size: 20px;
         }
 
 </style>

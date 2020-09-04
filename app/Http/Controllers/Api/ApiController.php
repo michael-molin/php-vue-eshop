@@ -35,8 +35,8 @@ class ApiController extends Controller
         $total_parse = $cart->totalPrice;
         $order['total'] = intval($total_parse);
         $order->save();
-        foreach ($cart->listProducts as $product) {
-            $order->products()->attach($product->id);
+        foreach ($cart->listProducts as $product) { // ciclo ci permette di ciclare tutti i componenti dentro cart
+            $order->products()->attach($product->id); // dalla TAB order vai alla product e ATTACH l'id del prodotto
         }
     }
 

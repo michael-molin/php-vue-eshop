@@ -20,10 +20,10 @@
                             <!-- funzioni di carousel -->
                             <carousel :per-page="1" :autoplay="true" :mouse-drag="true">
                                 <slide>
-                                    <img src="https://picsum.photos/200/300?random=1">
+                                    <img :src='thisProduct.photo'>
                                 </slide>
                                 <slide>
-                                   <img src="https://picsum.photos/200/300?random=2">
+                                   <img :src='thisProduct.photo'>
                                 </slide>
                             </carousel>
                             <p>{{thisProduct.description}}</p>

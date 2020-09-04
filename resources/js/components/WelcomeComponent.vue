@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-      <div v-for='(product, index) in products' :key='index' class="card">
+      <div class="card container-product" v-for='(product, index) in products' :key='index' >
         <h2>Nome: {{product.name}}</h2>
         <!-- <p>Descrizione: {{product.description}}</p> -->
         <small>Prezzo: {{product.price}}</small>
@@ -12,14 +12,14 @@
         <transition class="fade">
             <div class="mask-overlay" @click="isOpen = !isOpen">
                 <div class="panel" @click.stop>
-                    <h2>{{thisProduct.name}}</h2>
-                    <p>{{thisProduct.price}}€</p>
-                    <carousel :per-page="1" :autoplay="true" :mouse-drag="true">
+                   <h2>{{thisProduct.name}}</h2>
+                   <p>{{thisProduct.price}}€</p>
+                  <carousel :per-page="1" :autoplay="true" :mouse-drag="true">
                         <slide>
-                            <img src="https://picsum.photos/200/300?random=1">
+                            <img :src='thisProduct.photo'>
                         </slide>
                         <slide>
-                           <img src="https://picsum.photos/200/300?random=2">
+                           <img :src='thisProduct.photo'>
                         </slide>
                   </carousel>
                     <p>{{thisProduct.description}}</p>
@@ -59,6 +59,10 @@
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
             transition: all 0.3s ease;
             font-family: Helvetica, Arial, sans-serif;
+        }
+
+        .container-product {
+          
         }
 
 </style>

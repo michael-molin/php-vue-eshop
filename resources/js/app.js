@@ -28,13 +28,13 @@ Vue.component('welcome-component-cart', require('./components/WelcomeComponentCa
 Vue.component('welcome-component-admin', require('./components/WelcomeComponentAdmin.vue').default);
 Vue.component('cart-component', require('./components/CartComponent.vue').default);
 Vue.use(VueCarousel);
-Vue.prototype.$userId = document.querySelector("meta[name='user_id']").getAttribute('content');
+Vue.prototype.$userId = document.querySelector("meta[name='user_id']").getAttribute('content'); // invio la lo userId dell utente loggato
 //Definisco i componenti creati e utilizzo tramito use quelli già pre-impostati
-/**
- * Next, we will create a fresh Vue application instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- * /
+// /**
+//  * Next, we will create a fresh Vue application instance and attach it to
+//  * the page. Then, you may begin adding components to this application
+//  * or customize the JavaScript scaffolding to fit your unique needs.
+//  * /
 
 const app = new Vue({
     store,
