@@ -1,33 +1,34 @@
 // store/index.js
-let cart = window.localStorage.getItem('cart');                                 //Salvataggio pt3: init variabile, prende l'elemento 'cart' dallo storage della pagina
-let cartCount = window.localStorage.getItem('cartCount');                       //Salvataggio pt3: init variabile, prende l'elemento 'cartCount' dallo storage della pagina
-let totalPrice = window.localStorage.getItem('totalPrice');                       //Salvataggio pt3: init variabile, prende l'elemento 'cartCount' dallo storage della pagina
+// JS e VUE
+let cart = window.localStorage.getItem('cart');      //          //Salvataggio pt3: init variabile, prende l'elemento 'cart' dallo storage della pagina
+let cartCount = window.localStorage.getItem('cartCount');       //Salvataggio pt3: init variabile, prende l'elemento 'cartCount' dallo storage della pagina
+let totalPrice = window.localStorage.getItem('totalPrice');     //Salvataggio pt3: init variabile, prende l'elemento 'cartCount' dallo storage della pagina
 import Vue from "vue";
-import Vuex from "vuex";
+import Vuex from "vuex"; // comando instalazione VUEX
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
- state: {
+ state: { // simile al data di VUE
      cart: {
-         listProducts: cart ? JSON.parse(cart) : [],                                        //Salvataggio pt4: operatore ternario, se Json.parse(cart) ESISTE, assume il valore del carrello. ALTRIMENTI è un array vuoto
-         cartCount: cartCount ? parseInt(cartCount) : 0,                            //Salvataggio pt4: operatore ternario, se parseInt(cartCount) ESISTE, assume il valore del CartCount. ALTRIMENTI è 0
+         listProducts: cart ? JSON.parse(cart) : [],               //Salvataggio pt4: operatore ternario, se Json.parse(cart) ESISTE, assume il valore del carrello. ALTRIMENTI è un array vuoto
+         cartCount: cartCount ? parseInt(cartCount) : 0,           //Salvataggio pt4: operatore ternario, se parseInt(cartCount) ESISTE, assume il valore del CartCount. ALTRIMENTI è 0
          totalPrice: cartCount ? parseInt(totalPrice) : 0,
          userId: 0
      }
 
  },
  getters: {},
- mutations: {
+ mutations: { // methods, tutte le funzioni necessitano dello STATE
         storeProduct(state, item) {
             state.cart.totalPrice= 0;
             state.cart.listProducts.push(item);
             state.cart.cartCount= state.cart.listProducts.length;
             for (var i = 0; i < state.cart.listProducts.length; i++) {
-                state.cart.totalPrice += state.cart.listProducts[i].price;
+                state.cart.totalPrice += state.cart.listProducts[i].price; // somma il prezzo di ogni elemento del carrello
             }
             state.cart.totalPrice = state.cart.totalPrice.toFixed(2);
-            this.commit('saveCart');                                            //Salvataggio pt1: Spedisce il contenuto alla mutazione saveCart
+            this.commit('saveCart');  //Salvataggio pt1: Spedisce il contenuto alla mutazione saveCart
         },
 
         removeFromCart(state, index) {
@@ -40,7 +41,7 @@ export default new Vuex.Store({
                     state.cart.totalPrice += state.cart.listProducts[i].price;
                 }
                 state.cart.totalPrice = state.cart.totalPrice.toFixed(2);
-                this.commit('saveCart');
+                this.commit('saveCart'); // invoca la MUTATIONS senza passargli dati , li prende dallo state
             }
         },
 

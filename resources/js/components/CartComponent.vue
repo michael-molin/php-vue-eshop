@@ -3,9 +3,10 @@
         <div>
             <i class="fas fa-shopping-cart"></i> {{ $store.state.cart.cartCount }}
         </div>
-        <p>user id</p>
-        <input type="text" name="userId" v-model="userId">
+        <input type="hidden" name="userId" v-model="userId">
         <div v-if="$store.state.cart.listProducts.length > 0" class="navbar-dropdown is-boxed is-right side-menu bg-white shadow-sm">
+
+            <!-- con la VAR $store, entro dentro state del file index.js -->
             <div v-for="(item,index) in $store.state.cart.listProducts" :key="index">
                 <span  class="navbar-item"> {{ item.name }} - {{ item.price }}€</span>
                 <span class="removeBtn" @click="removeFromCart(index)">X</span>

@@ -30,6 +30,8 @@
     <!-- ELEMENTO CHE CI PERMETTE DI PRENDERE DALL TAB USER, L ID CHE DELL'UTENTE LOGGATO, LO INSERIEMO NELL LAYOUT PER AVER IL DATO IN OGNI VIEWS -->
     @if (Auth::check())
          <meta name="user_id" content="{{ Auth::user()->id }}" />
+         @else
+          <meta name="user_id" content="null" />
     @endif
 
     <div id="app">
@@ -65,6 +67,8 @@
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
+
+                                <!-- COMPONENETE FRATELLO -->
                                 <cart-component></cart-component>
 
                                 <!-- se ADMIN compare -->

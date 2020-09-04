@@ -1960,6 +1960,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['app'],
   data: function data() {
@@ -2374,7 +2375,7 @@ __webpack_require__.r(__webpack_exports__);
       this.thisProduct = product; // console.log(this.thisProduct);
     },
     addToCart: function addToCart(item) {
-      this.$store.commit('storeProduct', item);
+      this.$store.commit('storeProduct', item); // invoco una mutation dentro un METHOD, con il commit spedisco a storeProduct l item
     }
   },
   components: {
@@ -38781,8 +38782,6 @@ var render = function() {
       _vm._v(" " + _vm._s(_vm.$store.state.cart.cartCount) + "\n    ")
     ]),
     _vm._v(" "),
-    _c("p", [_vm._v("user id")]),
-    _vm._v(" "),
     _c("input", {
       directives: [
         {
@@ -38792,7 +38791,7 @@ var render = function() {
           expression: "userId"
         }
       ],
-      attrs: { type: "text", name: "userId" },
+      attrs: { type: "hidden", name: "userId" },
       domProps: { value: _vm.userId },
       on: {
         input: function($event) {
@@ -53418,17 +53417,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 // store/index.js
-var cart = window.localStorage.getItem('cart'); //Salvataggio pt3: init variabile, prende l'elemento 'cart' dallo storage della pagina
+// JS e VUE
+var cart = window.localStorage.getItem('cart'); //          //Salvataggio pt3: init variabile, prende l'elemento 'cart' dallo storage della pagina
 
 var cartCount = window.localStorage.getItem('cartCount'); //Salvataggio pt3: init variabile, prende l'elemento 'cartCount' dallo storage della pagina
 
 var totalPrice = window.localStorage.getItem('totalPrice'); //Salvataggio pt3: init variabile, prende l'elemento 'cartCount' dallo storage della pagina
 
 
+ // comando instalazione VUEX
 
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__["default"]);
 /* harmony default export */ __webpack_exports__["default"] = (new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
   state: {
+    // simile al data di VUE
     cart: {
       listProducts: cart ? JSON.parse(cart) : [],
       //Salvataggio pt4: operatore ternario, se Json.parse(cart) ESISTE, assume il valore del carrello. ALTRIMENTI è un array vuoto
@@ -53440,13 +53442,14 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
   },
   getters: {},
   mutations: {
+    // methods, tutte le funzioni necessitano dello STATE
     storeProduct: function storeProduct(state, item) {
       state.cart.totalPrice = 0;
       state.cart.listProducts.push(item);
       state.cart.cartCount = state.cart.listProducts.length;
 
       for (var i = 0; i < state.cart.listProducts.length; i++) {
-        state.cart.totalPrice += state.cart.listProducts[i].price;
+        state.cart.totalPrice += state.cart.listProducts[i].price; // somma il prezzo di ogni elemento del carrello
       }
 
       state.cart.totalPrice = state.cart.totalPrice.toFixed(2);
@@ -53463,7 +53466,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
         }
 
         state.cart.totalPrice = state.cart.totalPrice.toFixed(2);
-        this.commit('saveCart');
+        this.commit('saveCart'); // invoca la MUTATIONS senza passargli dati , li prende dallo state
       }
     },
     saveCart: function saveCart(state) {

@@ -118,7 +118,7 @@
             },
 
             addToCart(item) {
-                this.$store.commit('storeProduct', item);
+                this.$store.commit('storeProduct', item); // invoco una mutation dentro un METHOD, con il commit spedisco a storeProduct l item
             }
 
         },
