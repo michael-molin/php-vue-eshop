@@ -2122,6 +2122,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -2232,6 +2239,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -2276,6 +2292,32 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue_carousel__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-carousel */ "./node_modules/vue-carousel/dist/vue-carousel.min.js");
 /* harmony import */ var vue_carousel__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue_carousel__WEBPACK_IMPORTED_MODULE_0__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -6836,7 +6878,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".fade {\n  transition: opacity 0.9s ease;\n}\n.mask-overlay {\n  position: fixed;\n  z-index: 9998;\n  top: 0;\n  left: 0;\n  width: 100vw;\n  height: 100vh;\n  background-color: rgba(0, 0, 0, 0.5);\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n.panel {\n  width: 300px;\n  margin: 0 auto;\n  padding: 20px 30px;\n  background-color: #fff;\n  border-radius: 2px;\n  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);\n  transition: all 0.3s ease;\n  font-family: Helvetica, Arial, sans-serif;\n}", ""]);
+exports.push([module.i, ".fade {\n  transition: opacity 0.9s ease;\n}\n.mask-overlay {\n  position: fixed;\n  z-index: 9998;\n  top: 0;\n  left: 0;\n  width: 100vw;\n  height: 100vh;\n  background-color: rgba(0, 0, 0, 0.5);\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n.panel {\n  margin: 0 auto;\n  padding: 20px 30px;\n  background-color: #fff;\n  border-radius: 2px;\n  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);\n  transition: all 0.3s ease;\n  font-family: Helvetica, Arial, sans-serif;\n}", ""]);
 
 // exports
 
@@ -6855,7 +6897,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".fade {\n  transition: opacity 0.9s ease;\n}\n.mask-overlay {\n  position: fixed;\n  z-index: 9998;\n  top: 0;\n  left: 0;\n  width: 100vw;\n  height: 100vh;\n  background-color: rgba(0, 0, 0, 0.5);\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n.panel {\n  width: 300px;\n  margin: 0 auto;\n  padding: 20px 30px;\n  background-color: #fff;\n  border-radius: 2px;\n  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);\n  transition: all 0.3s ease;\n  font-family: Helvetica, Arial, sans-serif;\n}", ""]);
+exports.push([module.i, ".fade {\n  transition: opacity 0.9s ease;\n}\n.mask-overlay {\n  position: fixed;\n  z-index: 9998;\n  top: 0;\n  left: 0;\n  width: 100vw;\n  height: 100vh;\n  background-color: rgba(0, 0, 0, 0.5);\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n.panel {\n  margin: 0 auto;\n  padding: 20px 30px;\n  background-color: #fff;\n  border-radius: 2px;\n  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);\n  transition: all 0.3s ease;\n  font-family: Helvetica, Arial, sans-serif;\n}", ""]);
 
 // exports
 
@@ -6874,7 +6916,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".card {\n  margin: 20px 0;\n}\n.fade {\n  transition: opacity 0.9s ease;\n}\n.mask-overlay {\n  position: fixed;\n  z-index: 9998;\n  top: 0px;\n  left: 0;\n  width: 100vw;\n  height: 100vh;\n  background-color: rgba(0, 0, 0, 0.5);\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n.panel {\n  z-index: 9999;\n  text-align: center;\n  width: 300px;\n  margin: 0 auto;\n  padding: 20px 30px;\n  background-color: #fff;\n  border-radius: 2px;\n  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);\n  transition: all 0.3s ease;\n  font-family: Helvetica, Arial, sans-serif;\n}\n.example-slide {\n  align-items: center;\n  background-color: #666;\n  color: #999;\n  display: flex;\n  font-size: 1.5rem;\n  justify-content: center;\n  min-height: 10rem;\n}", ""]);
+exports.push([module.i, ".card {\n  margin: 20px 0;\n}\n.fade {\n  transition: opacity 0.9s ease;\n}\n.mask-overlay {\n  position: fixed;\n  z-index: 9998;\n  top: 0px;\n  left: 0;\n  width: 100vw;\n  height: 100vh;\n  background-color: rgba(0, 0, 0, 0.5);\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n.panel {\n  z-index: 9999;\n  text-align: center;\n  width: 20vw;\n  margin: 0 auto;\n  padding: 20px 30px;\n  background-color: #fff;\n  border-radius: 2px;\n  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);\n  transition: all 0.3s ease;\n  font-family: Helvetica, Arial, sans-serif;\n}\n.example-slide {\n  align-items: center;\n  background-color: #666;\n  color: #999;\n  display: flex;\n  font-size: 1.5rem;\n  justify-content: center;\n  min-height: 10rem;\n}\n.img {\n  padding: 15px;\n  border-radius: 25px;\n}\n.btn-primary, .btn-secondary {\n  width: 49%;\n  float: left;\n  margin: 5px;\n}\n.textcenter {\n  text-align: center;\n  margin: 0 auto;\n}", ""]);
 
 // exports
 
@@ -39085,8 +39127,6 @@ var render = function() {
           [_vm._v("Visualizza")]
         ),
         _vm._v(" "),
-        _c("p", [_vm._v(_vm._s(_vm.isOpen))]),
-        _vm._v(" "),
         _vm.isOpen
           ? _c(
               "div",
@@ -39130,6 +39170,18 @@ var render = function() {
                               }
                             },
                             [
+                              _c("slide", [
+                                _c("img", {
+                                  attrs: { src: _vm.thisProduct.photo }
+                                })
+                              ]),
+                              _vm._v(" "),
+                              _c("slide", [
+                                _c("img", {
+                                  attrs: { src: _vm.thisProduct.photo }
+                                })
+                              ]),
+                              _vm._v(" "),
                               _c("slide", [
                                 _c("img", {
                                   attrs: { src: _vm.thisProduct.photo }
@@ -39215,8 +39267,6 @@ var render = function() {
           [_vm._v("Visualizza")]
         ),
         _vm._v(" "),
-        _c("p", [_vm._v(_vm._s(_vm.isOpen))]),
-        _vm._v(" "),
         _vm.isOpen
           ? _c(
               "div",
@@ -39260,6 +39310,18 @@ var render = function() {
                               }
                             },
                             [
+                              _c("slide", [
+                                _c("img", {
+                                  attrs: { src: _vm.thisProduct.photo }
+                                })
+                              ]),
+                              _vm._v(" "),
+                              _c("slide", [
+                                _c("img", {
+                                  attrs: { src: _vm.thisProduct.photo }
+                                })
+                              ]),
+                              _vm._v(" "),
                               _c("slide", [
                                 _c("img", {
                                   attrs: { src: _vm.thisProduct.photo }
@@ -39328,22 +39390,13 @@ var render = function() {
     { staticClass: "container" },
     _vm._l(_vm.products, function(product, index) {
       return _c("div", { key: index, staticClass: "card" }, [
-        _c("h2", [_vm._v("Nome: " + _vm._s(product.name))]),
+        _c("h2", { staticClass: "textcenter" }, [
+          _vm._v("Nome: " + _vm._s(product.name))
+        ]),
         _vm._v(" "),
-        _c("small", [_vm._v("Prezzo: " + _vm._s(product.price))]),
-        _vm._v(" "),
-        _c(
-          "button",
-          {
-            attrs: { type: "button", name: "button" },
-            on: {
-              click: function($event) {
-                ;(_vm.isOpen = !_vm.isOpen), _vm.productShow(product)
-              }
-            }
-          },
-          [_vm._v("Visualizza")]
-        ),
+        _c("small", { staticClass: "textcenter" }, [
+          _vm._v("Prezzo: " + _vm._s(product.price))
+        ]),
         _vm._v(" "),
         _vm.isOpen
           ? _c(
@@ -39372,9 +39425,11 @@ var render = function() {
                           }
                         },
                         [
-                          _c("h2", [_vm._v(_vm._s(_vm.thisProduct.name))]),
+                          _c("h2", { staticClass: "textcenter" }, [
+                            _vm._v(_vm._s(_vm.thisProduct.name))
+                          ]),
                           _vm._v(" "),
-                          _c("p", [
+                          _c("p", { staticClass: "textcenter" }, [
                             _vm._v(_vm._s(_vm.thisProduct.price) + "€")
                           ]),
                           _vm._v(" "),
@@ -39388,6 +39443,18 @@ var render = function() {
                               }
                             },
                             [
+                              _c("slide", [
+                                _c("img", {
+                                  attrs: { src: _vm.thisProduct.photo }
+                                })
+                              ]),
+                              _vm._v(" "),
+                              _c("slide", [
+                                _c("img", {
+                                  attrs: { src: _vm.thisProduct.photo }
+                                })
+                              ]),
+                              _vm._v(" "),
                               _c("slide", [
                                 _c("img", {
                                   attrs: { src: _vm.thisProduct.photo }
@@ -39416,6 +39483,7 @@ var render = function() {
                           _c(
                             "button",
                             {
+                              staticClass: "btn btn-danger",
                               attrs: {
                                 id: "btn-cart",
                                 type: "button",
@@ -39440,20 +39508,40 @@ var render = function() {
             )
           : _vm._e(),
         _vm._v(" "),
-        _c("img", { attrs: { src: product.photo, alt: "" } }),
+        _c("img", {
+          staticClass: "img",
+          attrs: { src: product.photo, alt: "" }
+        }),
         _vm._v(" "),
-        _c(
-          "button",
-          {
-            attrs: { id: "btn-cart", type: "button", name: "button" },
-            on: {
-              click: function($event) {
-                return _vm.addToCart(product)
+        _c("div", { staticClass: "box-button" }, [
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-primary",
+              attrs: { id: "btn-cart", type: "button", name: "button" },
+              on: {
+                click: function($event) {
+                  return _vm.addToCart(product)
+                }
               }
-            }
-          },
-          [_vm._v("Aggiungi al Carrello")]
-        )
+            },
+            [_vm._v("Aggiungi al Carrello")]
+          ),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-secondary",
+              attrs: { type: "button", name: "button" },
+              on: {
+                click: function($event) {
+                  ;(_vm.isOpen = !_vm.isOpen), _vm.productShow(product)
+                }
+              }
+            },
+            [_vm._v("Visualizza")]
+          )
+        ])
       ])
     }),
     0

@@ -48,7 +48,7 @@ class ProductController extends Controller
         $data = $request->all();
         // dd($data);
         $data['user_id'] = Auth::id();
-        $data['photo'] = 'https://picsum.photos/900/600';
+        $data['photo'] = 'https://picsum.photos/900/600'; // inseriamo manualmente la photo
 
         $validator = Validator::make($data, [
             'name' => 'required|string|max:50',
@@ -143,11 +143,8 @@ class ProductController extends Controller
     {
         $product = Product::findOrFail($id);
 
-
         $product->delete();
-
-        $product->orders()->detach($product->id);  // dalla TAB $product vai alla orders e DETACH l'id del prodotto
-        $product->orders()->detach($order->id);  // dalla TAB $product vai alla orders e DETACH l'id del prodotto
+        // $product->orders()->detach($product->id);
 
         return redirect()->route('admin.products.index');
     }

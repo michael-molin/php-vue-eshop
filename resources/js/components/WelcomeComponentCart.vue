@@ -1,11 +1,10 @@
 <template>
         <div class="container">
           <div v-for='(product, index) in products' :key='index' class="card">
-              <h2>Nome: {{product.name}}</h2>
-              <small>Prezzo: {{product.price}}</small>
+              <h2 class="textcenter">Nome: {{product.name}}</h2>
+              <small class="textcenter">Prezzo: {{product.price}}</small>
 
-              <!-- al click sul visualizza apro la finestra con isOpen, invio all func productShow il prodotto ciclato a riga 3 -->
-              <button @click='isOpen = !isOpen , productShow(product)' type="button" name="button">Visualizza</button>
+
               <div v-if='isOpen'>
                   <transition class="fade">
                       <div class="mask-overlay" @click="isOpen = !isOpen">
@@ -14,8 +13,8 @@
                         <div class="panel" @click.stop>
 
                           <!-- stampo il product spedito alla function productShow -->
-                            <h2>{{thisProduct.name}}</h2>
-                            <p>{{thisProduct.price}}€</p>
+                            <h2 class="textcenter">{{thisProduct.name}}</h2>
+                            <p class="textcenter">{{thisProduct.price}}€</p>
 
                             <!-- funzioni di carousel -->
                             <carousel :per-page="1" :autoplay="true" :mouse-drag="true">
@@ -25,16 +24,27 @@
                                 <slide>
                                    <img :src='thisProduct.photo'>
                                 </slide>
+                                <slide>
+                                   <img :src='thisProduct.photo'>
+                                </slide>
+                                <slide>
+                                   <img :src='thisProduct.photo'>
+                                </slide>
                             </carousel>
                             <p>{{thisProduct.description}}</p>
                             <p>In magazzino: {{thisProduct.stock}}</p>
-                            <button id="btn-cart" type="button" name="button" @click="sentToCart(thisProduct)">Aggiungi al Carrello</button>
+                            <button class="btn btn-danger" id="btn-cart" type="button" name="button" @click="sentToCart(thisProduct)">Aggiungi al Carrello</button>
                         </div>
                     </div>
                   </transition>
               </div>
-              <img :src='product.photo' alt="">
-              <button id="btn-cart" type="button" name="button" @click="addToCart(product)">Aggiungi al Carrello</button>
+              <img class="img" :src='product.photo' alt="">
+              <div class="box-button">
+                <button class="btn btn-primary" id="btn-cart" type="button" name="button" @click="addToCart(product)">Aggiungi al Carrello</button>
+
+                <!-- al click sul visualizza apro la finestra con isOpen, invio all func productShow il prodotto ciclato a riga 3 -->
+                <button class="btn btn-secondary" @click='isOpen = !isOpen , productShow(product)' type="button" name="button">Visualizza</button>
+              </div>
           </div>
         </div>
 </template>
@@ -62,7 +72,7 @@
         .panel {
             z-index: 9999;
             text-align: center;
-            width: 300px;
+            width: 20vw;
             margin: 0 auto;
             padding: 20px 30px;
             background-color: #fff;
@@ -80,6 +90,22 @@
             font-size: 1.5rem;
             justify-content: center;
             min-height: 10rem;
+         }
+
+         .img {
+           padding: 15px;
+           border-radius: 25px;
+         }
+
+         .btn-primary, .btn-secondary {
+           width: 49%;
+           float: left;
+           margin: 5px;
+         }
+
+         .textcenter {
+           text-align: center;
+           margin: 0 auto;
          }
 </style>
 

@@ -7,7 +7,7 @@
 
         <!-- al click isOpen diventa il contario -->
         <button @click='isOpen = !isOpen , getThisProduct(product)' type="button" name="button">Visualizza</button>
-        <p>{{isOpen}}</p>
+        <!-- <p>{{isOpen}}</p> -->
         <div v-if='isOpen'>
         <transition class="fade">
             <div class="mask-overlay" @click="isOpen = !isOpen">
@@ -17,6 +17,12 @@
                     <carousel :per-page="1" :autoplay="true" :mouse-drag="true">
                           <slide>
                               <img :src='thisProduct.photo'>
+                          </slide>
+                          <slide>
+                             <img :src='thisProduct.photo'>
+                          </slide>
+                          <slide>
+                             <img :src='thisProduct.photo'>
                           </slide>
                           <slide>
                              <img :src='thisProduct.photo'>
@@ -51,7 +57,6 @@
         }
 
         .panel {
-            width: 300px;
             margin: 0 auto;
             padding: 20px 30px;
             background-color: #fff;
@@ -59,6 +64,10 @@
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
             transition: all 0.3s ease;
             font-family: Helvetica, Arial, sans-serif;
+        }
+
+        .panel img {
+
         }
 
 </style>
