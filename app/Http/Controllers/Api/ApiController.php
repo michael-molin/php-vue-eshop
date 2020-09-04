@@ -36,7 +36,7 @@ class ApiController extends Controller
         $order['total'] = intval($total_parse);
         $order->save();
         foreach ($cart->listProducts as $product) {
-            $order->product()->attach($product->id);
+            $order->products()->attach($product->id);
         }
     }
 

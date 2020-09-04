@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Product;
+use App\User;
+use App\Order;
 
 class WelcomeController extends Controller
 {
@@ -84,5 +86,11 @@ class WelcomeController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function history($id) {
+
+        $orders = Order::where('user_id' , $id)->get();
+        return view('history', compact('orders'));
     }
 }

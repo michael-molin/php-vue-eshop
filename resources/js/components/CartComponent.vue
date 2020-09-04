@@ -32,7 +32,6 @@
                                 <input class="form-control col-md-6" type="text" name="nm-carta" placeholder="Numero Carta">
                                 <input class="form-control col-md-6 " type="text" name="exp-carta" placeholder="Scadenza Carta">
                                 <input class="form-control col-md-6" type="text" name="code-carta" placeholder="Codice Segreto">
-
                                 <!-- al click invio carrello all function payment -->
                                 <input @click='payment()' class="btn btn-primary col-md-6" name="" value="Paga">
                             </form>
@@ -62,7 +61,6 @@
             }
         },
 
-
         mounted() {                                                             //Si avvia solo alla creazione o montaggio del componente
 
         },
@@ -77,12 +75,16 @@
             payment() {
               this.$store.state.cart.userId = this.userId;
               var cart = this.$store.state.cart;
+              var self = this;      //Per richiamare this all'interno di Axios, bisogna salvare this in una variabile e richiamarla dopo
               // console.log(cart); // carrello disponibile in tutto VUE
 
               axios.post('api/checkout', cart) // chiamata post, endpoint e variabile
               .then(function (response) {
-               console.log(response.config);
                // window.location.href = "checkout"; // simile al link
+               console.log(this);   //This all'interno di .then non è il this dell'esterno
+               self.$store.commit('resetCart');
+               self.paymentsOpen = false;
+
               })
               .catch(function (error) {
                   console.log(error);
@@ -90,6 +92,11 @@
 
 
             },
+
+            resetVueCart() {
+                this.$store.commit('resetCart');
+                this.paymentsOpen = false;
+            }
 
 
         }

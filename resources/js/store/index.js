@@ -50,6 +50,13 @@ export default new Vuex.Store({
             window.localStorage.setItem('cartCount', state.cart.cartCount);          //Salvataggio pt2: setta il tutto in uno storage della pagina del broweser
             window.localStorage.setItem('totalPrice', state.cart.totalPrice);          //Salvataggio pt2: setta il tutto in uno storage della pagina del broweser
         },
+
+        resetCart(state) {
+            state.cart.listProducts = [];
+            state.cart.totalPrice= 0;
+            state.cart.cartCount= 0;
+            this.commit('saveCart');
+        }
     },
  actions: {}
 });

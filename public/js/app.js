@@ -1960,7 +1960,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['app'],
   data: function data() {
@@ -1980,14 +1979,24 @@ __webpack_require__.r(__webpack_exports__);
     },
     payment: function payment() {
       this.$store.state.cart.userId = this.userId;
-      var cart = this.$store.state.cart; // console.log(cart); // carrello disponibile in tutto VUE
+      var cart = this.$store.state.cart;
+      var self = this; //Per richiamare this all'interno di Axios, bisogna salvare this in una variabile e richiamarla dopo
+      // console.log(cart); // carrello disponibile in tutto VUE
 
       axios.post('api/checkout', cart) // chiamata post, endpoint e variabile
       .then(function (response) {
-        console.log(response.config); // window.location.href = "checkout"; // simile al link
+        // window.location.href = "checkout"; // simile al link
+        console.log(this); //This all'interno di .then non è il this dell'esterno
+
+        self.$store.commit('resetCart');
+        self.paymentsOpen = false;
       })["catch"](function (error) {
         console.log(error);
       });
+    },
+    resetVueCart: function resetVueCart() {
+      this.$store.commit('resetCart');
+      this.paymentsOpen = false;
     }
   }
 });
@@ -53475,6 +53484,12 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
       window.localStorage.setItem('cartCount', state.cart.cartCount); //Salvataggio pt2: setta il tutto in uno storage della pagina del broweser
 
       window.localStorage.setItem('totalPrice', state.cart.totalPrice); //Salvataggio pt2: setta il tutto in uno storage della pagina del broweser
+    },
+    resetCart: function resetCart(state) {
+      state.cart.listProducts = [];
+      state.cart.totalPrice = 0;
+      state.cart.cartCount = 0;
+      this.commit('saveCart');
     }
   },
   actions: {}
@@ -53500,8 +53515,8 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\MAMP\htdocs\php-vue-eshop\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! D:\MAMP\htdocs\php-vue-eshop\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\MAMP\htdocs\php-vue-eshop\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\MAMP\htdocs\php-vue-eshop\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
