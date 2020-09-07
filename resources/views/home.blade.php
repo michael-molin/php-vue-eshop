@@ -21,3 +21,14 @@
     </div>
 </div>
 @endsection
+
+<style leng="scss">
+
+  .card-header {
+    background-color: black!important;
+    color: white;
+  }
+  .py-4 {
+    height: 100vh;
+  }
+</style>

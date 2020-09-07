@@ -1967,6 +1967,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['app'],
+  // prendo i dati inseriti nel file app.blade
   data: function data() {
     return {
       paymentsOpen: false,
@@ -2002,6 +2003,7 @@ __webpack_require__.r(__webpack_exports__);
     resetVueCart: function resetVueCart() {
       this.$store.commit('resetCart');
       this.paymentsOpen = false;
+      alert('pagamento effettuato');
     }
   }
 });
@@ -2052,12 +2054,6 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue_carousel__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-carousel */ "./node_modules/vue-carousel/dist/vue-carousel.min.js");
 /* harmony import */ var vue_carousel__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue_carousel__WEBPACK_IMPORTED_MODULE_0__);
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -2248,12 +2244,57 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+ //Importo nel componente i tag slide e carousel dalla cartella node.js vue-carousel
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       products: [],
       thisProduct: {},
+      cartProduct: [],
       isOpen: false // var sentinella
 
     };
@@ -2273,9 +2314,16 @@ __webpack_require__.r(__webpack_exports__);
     });
   },
   methods: {
-    getThisProduct: function getThisProduct(item) {
-      this.thisProduct = item;
+    productShow: function productShow(product) {
+      this.thisProduct = product; // console.log(this.thisProduct);
+    },
+    addToCart: function addToCart(item) {
+      this.$store.commit('storeProduct', item); // invoco una mutation dentro un METHOD, con il commit spedisco a storeProduct l item
     }
+  },
+  components: {
+    Carousel: vue_carousel__WEBPACK_IMPORTED_MODULE_0__["Carousel"],
+    Slide: vue_carousel__WEBPACK_IMPORTED_MODULE_0__["Slide"]
   }
 });
 
@@ -2292,40 +2340,6 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue_carousel__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-carousel */ "./node_modules/vue-carousel/dist/vue-carousel.min.js");
 /* harmony import */ var vue_carousel__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue_carousel__WEBPACK_IMPORTED_MODULE_0__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -6878,7 +6892,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".fade {\n  transition: opacity 0.9s ease;\n}\n.mask-overlay {\n  position: fixed;\n  z-index: 9998;\n  top: 0;\n  left: 0;\n  width: 100vw;\n  height: 100vh;\n  background-color: rgba(0, 0, 0, 0.5);\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n.panel {\n  margin: 0 auto;\n  padding: 20px 30px;\n  background-color: #fff;\n  border-radius: 2px;\n  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);\n  transition: all 0.3s ease;\n  font-family: Helvetica, Arial, sans-serif;\n}", ""]);
+exports.push([module.i, ".example-slide {\n  align-items: center;\n  background-color: #666;\n  color: #999;\n  display: flex;\n  font-size: 1.5rem;\n  justify-content: center;\n  min-height: 10rem;\n}\n.btn-primary, .btn-secondary {\n  width: 49%;\n  float: left;\n  margin: 5px;\n}\n.textcenter {\n  text-align: center;\n  margin: 0 auto;\n}", ""]);
 
 // exports
 
@@ -6897,7 +6911,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".fade {\n  transition: opacity 0.9s ease;\n}\n.mask-overlay {\n  position: fixed;\n  z-index: 9998;\n  top: 0;\n  left: 0;\n  width: 100vw;\n  height: 100vh;\n  background-color: rgba(0, 0, 0, 0.5);\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n.panel {\n  margin: 0 auto;\n  padding: 20px 30px;\n  background-color: #fff;\n  border-radius: 2px;\n  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);\n  transition: all 0.3s ease;\n  font-family: Helvetica, Arial, sans-serif;\n}", ""]);
+exports.push([module.i, ".card {\n  border-radius: 6px !important;\n  background-color: #edeeef !important;\n  border: 4px solid white !important;\n  color: black !important;\n  margin: 20px 0;\n}\n.fade {\n  transition: opacity 0.9s ease;\n}\n.mask-overlay {\n  position: fixed;\n  z-index: 9998;\n  top: 0px;\n  left: 0;\n  width: 100vw;\n  height: 100vh;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  background-color: rgba(0, 0, 0, 0.3) !important;\n}\n.panel {\n  z-index: 9999;\n  text-align: center;\n  width: 20vw;\n  margin: 0 auto;\n  padding: 20px 30px;\n  background-color: #fff;\n  border-radius: 2px;\n  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);\n  transition: all 0.3s ease;\n  font-family: Helvetica, Arial, sans-serif;\n  background-color: rgba(237, 238, 239, 0.4) !important;\n  border-radius: 10px !important;\n  /* width: 40vw!important; */\n}\n.example-slide {\n  align-items: center;\n  background-color: #666;\n  color: #999;\n  display: flex;\n  font-size: 1.5rem;\n  justify-content: center;\n  min-height: 10rem;\n}\n.btn-primary, .btn-secondary {\n  width: 49%;\n  float: left;\n  margin: 5px;\n}\n.textcenter {\n  text-align: center;\n  margin: 0 auto;\n}", ""]);
 
 // exports
 
@@ -6916,7 +6930,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".card {\n  margin: 20px 0;\n}\n.fade {\n  transition: opacity 0.9s ease;\n}\n.mask-overlay {\n  position: fixed;\n  z-index: 9998;\n  top: 0px;\n  left: 0;\n  width: 100vw;\n  height: 100vh;\n  background-color: rgba(0, 0, 0, 0.5);\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n.panel {\n  z-index: 9999;\n  text-align: center;\n  width: 20vw;\n  margin: 0 auto;\n  padding: 20px 30px;\n  background-color: #fff;\n  border-radius: 2px;\n  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);\n  transition: all 0.3s ease;\n  font-family: Helvetica, Arial, sans-serif;\n}\n.example-slide {\n  align-items: center;\n  background-color: #666;\n  color: #999;\n  display: flex;\n  font-size: 1.5rem;\n  justify-content: center;\n  min-height: 10rem;\n}\n.img {\n  padding: 15px;\n  border-radius: 25px;\n}\n.btn-primary, .btn-secondary {\n  width: 49%;\n  float: left;\n  margin: 5px;\n}\n.textcenter {\n  text-align: center;\n  margin: 0 auto;\n}", ""]);
+exports.push([module.i, ".example-slide {\n  align-items: center;\n  background-color: #666;\n  color: #999;\n  display: flex;\n  font-size: 1.5rem;\n  justify-content: center;\n  min-height: 10rem;\n}\n.btn-primary, .btn-secondary {\n  width: 49%;\n  float: left;\n  margin: 5px;\n}\n.textcenter {\n  text-align: center;\n  margin: 0 auto;\n}", ""]);
 
 // exports
 
@@ -6935,7 +6949,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.removeBtn {\n    margin-right: 1rem;\n    color: red;\n    cursor: pointer;\n}\n.side-menu {\n    position: fixed;\n    top: 0;\n    right: 0;\n    height: 100%;\n    width: 500px;\n    padding-top: 150px;\n    z-index: 0;\n}\n.mask-overlay{\n        position: fixed;\n        z-index: 9998;\n        top: 0px;\n        left: 0;\n        width: 100vw;\n        height: 100vh;\n        background-color: rgba(0, 0, 0, 0.9);\n        display:flex;\n        justify-content: center;\n        align-items: center;\n}\n.panel {\n        z-index: 9999;\n        text-align: center;\n        width: 85vw;\n        height: 85vh;\n        margin: 0 auto;\n        padding: 20px 30px;\n        background-color: #fff;\n        border-radius: 2px;\n        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);\n        transition: all 0.3s ease;\n        font-family: Helvetica, Arial, sans-serif;\n}\nform {\n      display: flex;\n      flex-direction: column;\n      align-items: center;\n}\nform input {\n      margin: 10px;\n}\n.credit .fab {\n      font-size: 50px;\n      padding: 5px;\n      color: #3490dc;\n      cursor: pointer;\n}\n.credit .fab:hover {\n      color: blue;\n}\n.box-article {\n      display: flex;\n      justify-content: space-around;\n      align-items: center;\n      margin-bottom: 3px;\n      background-color: white;\n      border: 1px solid rgba(0,0,0,0.1);\n      height: 50px;\n}\n.fa-times {\n      color: red;\n      font-size: 20px;\n}\n\n", ""]);
+exports.push([module.i, "\n.removeBtn {\n    margin-right: 1rem;\n    color: red;\n    cursor: pointer;\n}\n.side-menu {\n    position: fixed;\n    top: 0;\n    right: 0;\n    height: 100%;\n    width: 500px;\n    padding-top: 150px;\n    z-index: 0;\n}\n.mask-overlay{\n        position: fixed;\n        z-index: 9998;\n        top: 0px;\n        left: 0;\n        width: 100vw;\n        height: 100vh;\n        background-color: rgba(0, 0, 0, 0.9);\n        display:flex;\n        justify-content: center;\n        align-items: center;\n}\n.panel {\n        z-index: 9999;\n        text-align: center;\n        width: 85vw;\n        height: 85vh;\n        margin: 0 auto;\n        padding: 20px 30px;\n        background-color: #fff;\n        border-radius: 2px;\n        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);\n        transition: all 0.3s ease;\n        font-family: Helvetica, Arial, sans-serif;\n}\nform {\n      display: flex;\n      flex-direction: column;\n      align-items: center;\n}\nform input {\n      margin: 10px;\n}\n.credit .fab {\n      font-size: 50px;\n      padding: 5px;\n      color: #3490dc;\n      cursor: pointer;\n}\n.credit .fab:hover {\n      color: blue;\n}\n.box-article {\n      display: flex;\n      justify-content: space-around;\n      align-items: center;\n      margin-bottom: 3px;\n      background-color: white;\n      border: 1px solid rgba(0,0,0,0.1);\n      height: 50px;\n}\n.box-cart {\n      background: rgb(255,255,255);\n      background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(200,200,200,1) 100%);\n      /* margin-top: 78px; */\n      padding-top: 3px;\n}\n.fa-times {\n      color: red;\n      font-size: 20px;\n}\n\n", ""]);
 
 // exports
 
@@ -38868,7 +38882,7 @@ var render = function() {
           "div",
           {
             staticClass:
-              "navbar-dropdown is-boxed is-right side-menu bg-white shadow-sm"
+              "navbar-dropdown is-boxed is-right side-menu shadow-sm box-cart"
           },
           [
             _vm._l(_vm.$store.state.cart.listProducts, function(item, index) {
@@ -39110,22 +39124,13 @@ var render = function() {
     { staticClass: "container" },
     _vm._l(_vm.products, function(product, index) {
       return _c("div", { key: index, staticClass: "card container-product" }, [
-        _c("h2", [_vm._v("Nome: " + _vm._s(product.name))]),
+        _c("h2", { staticClass: "textcenter" }, [
+          _vm._v("Nome: " + _vm._s(product.name))
+        ]),
         _vm._v(" "),
-        _c("small", [_vm._v("Prezzo: " + _vm._s(product.price))]),
-        _vm._v(" "),
-        _c(
-          "button",
-          {
-            attrs: { type: "button", name: "button" },
-            on: {
-              click: function($event) {
-                ;(_vm.isOpen = !_vm.isOpen), _vm.getThisProduct(product)
-              }
-            }
-          },
-          [_vm._v("Visualizza")]
-        ),
+        _c("small", { staticClass: "textcenter" }, [
+          _vm._v("Prezzo: " + _vm._s(product.price))
+        ]),
         _vm._v(" "),
         _vm.isOpen
           ? _c(
@@ -39154,9 +39159,11 @@ var render = function() {
                           }
                         },
                         [
-                          _c("h2", [_vm._v(_vm._s(_vm.thisProduct.name))]),
+                          _c("h2", { staticClass: "textcenter" }, [
+                            _vm._v(_vm._s(_vm.thisProduct.name))
+                          ]),
                           _vm._v(" "),
-                          _c("p", [
+                          _c("p", { staticClass: "textcenter" }, [
                             _vm._v(_vm._s(_vm.thisProduct.price) + "€")
                           ]),
                           _vm._v(" "),
@@ -39197,15 +39204,7 @@ var render = function() {
                             1
                           ),
                           _vm._v(" "),
-                          _c("p", [
-                            _vm._v(_vm._s(_vm.thisProduct.description))
-                          ]),
-                          _vm._v(" "),
-                          _c("p", [
-                            _vm._v(
-                              "In magazzino: " + _vm._s(_vm.thisProduct.stock)
-                            )
-                          ])
+                          _c("p", [_vm._v(_vm._s(_vm.thisProduct.description))])
                         ],
                         1
                       )
@@ -39217,7 +39216,21 @@ var render = function() {
             )
           : _vm._e(),
         _vm._v(" "),
-        _c("img", { attrs: { src: product.photo, alt: "" } })
+        _c("img", { attrs: { src: product.photo, alt: "" } }),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-danger",
+            attrs: { type: "button", name: "button" },
+            on: {
+              click: function($event) {
+                ;(_vm.isOpen = !_vm.isOpen), _vm.getThisProduct(product)
+              }
+            }
+          },
+          [_vm._v("Visualizza")]
+        )
       ])
     }),
     0
@@ -39254,19 +39267,6 @@ var render = function() {
         _vm._v(" "),
         _c("small", [_vm._v("Prezzo: " + _vm._s(product.price))]),
         _vm._v(" "),
-        _c(
-          "button",
-          {
-            attrs: { type: "button", name: "button" },
-            on: {
-              click: function($event) {
-                ;(_vm.isOpen = !_vm.isOpen), _vm.getThisProduct(product)
-              }
-            }
-          },
-          [_vm._v("Visualizza")]
-        ),
-        _vm._v(" "),
         _vm.isOpen
           ? _c(
               "div",
@@ -39294,9 +39294,11 @@ var render = function() {
                           }
                         },
                         [
-                          _c("h2", [_vm._v(_vm._s(_vm.thisProduct.name))]),
+                          _c("h2", { staticClass: "textcenter" }, [
+                            _vm._v(_vm._s(_vm.thisProduct.name))
+                          ]),
                           _vm._v(" "),
-                          _c("p", [
+                          _c("p", { staticClass: "textcenter" }, [
                             _vm._v(_vm._s(_vm.thisProduct.price) + "€")
                           ]),
                           _vm._v(" "),
@@ -39345,7 +39347,25 @@ var render = function() {
                             _vm._v(
                               "In magazzino: " + _vm._s(_vm.thisProduct.stock)
                             )
-                          ])
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-danger",
+                              attrs: {
+                                id: "btn-cart",
+                                type: "button",
+                                name: "button"
+                              },
+                              on: {
+                                click: function($event) {
+                                  return _vm.sentToCart(_vm.thisProduct)
+                                }
+                              }
+                            },
+                            [_vm._v("Aggiungi al Carrello")]
+                          )
                         ],
                         1
                       )
@@ -39357,7 +39377,40 @@ var render = function() {
             )
           : _vm._e(),
         _vm._v(" "),
-        _c("img", { attrs: { src: product.photo, alt: "" } })
+        _c("img", {
+          staticClass: "img",
+          attrs: { src: product.photo, alt: "" }
+        }),
+        _vm._v(" "),
+        _c("div", { staticClass: "box-button" }, [
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-primary",
+              attrs: { id: "btn-cart", type: "button", name: "button" },
+              on: {
+                click: function($event) {
+                  return _vm.addToCart(product)
+                }
+              }
+            },
+            [_vm._v("Aggiungi al Carrello")]
+          ),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-secondary",
+              attrs: { type: "button", name: "button" },
+              on: {
+                click: function($event) {
+                  ;(_vm.isOpen = !_vm.isOpen), _vm.productShow(product)
+                }
+              }
+            },
+            [_vm._v("Visualizza")]
+          )
+        ])
       ])
     }),
     0
@@ -53522,6 +53575,7 @@ var totalPrice = window.localStorage.getItem('totalPrice'); //Salvataggio pt3: i
 
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__["default"]);
 /* harmony default export */ __webpack_exports__["default"] = (new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
+  // vuex
   state: {
     // simile al data di VUE
     cart: {

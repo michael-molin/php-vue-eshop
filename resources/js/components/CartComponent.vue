@@ -4,7 +4,7 @@
             <i class="fas fa-shopping-cart"></i> {{ $store.state.cart.cartCount }}
         </div>
         <input type="hidden" name="userId" v-model="userId">
-        <div v-if="$store.state.cart.listProducts.length > 0" class="navbar-dropdown is-boxed is-right side-menu bg-white shadow-sm">
+        <div v-if="$store.state.cart.listProducts.length > 0" class="navbar-dropdown is-boxed is-right side-menu shadow-sm box-cart">
 
             <!-- con la VAR $store, entro dentro state del file index.js -->
             <div v-for="(item,index) in $store.state.cart.listProducts" :key="index">
@@ -58,7 +58,7 @@
 <script>
 
     export default {
-        props: ['app'],
+        props: ['app'], // prendo i dati inseriti nel file app.blade
         data() {
             return {
                 paymentsOpen : false,
@@ -66,7 +66,7 @@
             }
         },
 
-        mounted() {                                                             //Si avvia solo alla creazione o montaggio del componente
+        mounted() {   //Si avvia solo alla creazione o montaggio del componente
 
         },
 
@@ -101,6 +101,7 @@
             resetVueCart() {
                 this.$store.commit('resetCart');
                 this.paymentsOpen = false;
+                alert('pagamento effettuato');
             }
 
 
@@ -183,6 +184,13 @@
           background-color: white;
           border: 1px solid rgba(0,0,0,0.1);
           height: 50px;
+        }
+
+        .box-cart {
+          background: rgb(255,255,255);
+          background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(200,200,200,1) 100%);
+          /* margin-top: 78px; */
+          padding-top: 3px;
         }
 
         .fa-times {

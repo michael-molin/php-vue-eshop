@@ -38,7 +38,8 @@
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm" style="z-index:999;">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
+                    <!-- {{ config('app.name', 'Laravel') }} -->
+                    <h3 style="color: red;">Eshop <i class="fab fa-laravel"></i>  <i class="fab fa-vuejs"></i> </h3>
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -71,9 +72,9 @@
                                 <!-- COMPONENETE FRATELLO -->
                                 <cart-component></cart-component>
 
-                                <!-- se ADMIN compare -->
+                                <!-- se ADMIN compare può accedere al link ADMIN PANEL-->
                                 @if(Auth::user()->admin)
-                                  <a href="{{route('admin.products.index')}}">PANNELLO ADMIN</a>
+                                  <a class="admin-panel btn" href="{{route('admin.products.index')}}">Admin Dashboard</a>
                                 @endif
 
 
@@ -102,3 +103,20 @@
     </div>
 </body>
 </html>
+
+
+<style leng="scss">
+  .py-4 {
+    /* background-color: pink; */
+    background-image: url('https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Ffg-a.com%2Fwallpapers%2F2018-white-texture-background-image.jpg&f=1&nofb=1');
+    /* background-repeat: no-repeat; */
+    background-size: auto;
+  }
+
+  .admin-panel {
+    background-color: white;
+    border: 1px solid black;
+    padding: 2px;
+    border-radius: 3px;
+  }
+</style>

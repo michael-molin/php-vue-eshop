@@ -8,7 +8,7 @@ import Vuex from "vuex"; // comando instalazione VUEX
 
 Vue.use(Vuex);
 
-export default new Vuex.Store({
+export default new Vuex.Store({ // vuex
  state: { // simile al data di VUE
      cart: {
          listProducts: cart ? JSON.parse(cart) : [],               //Salvataggio pt4: operatore ternario, se Json.parse(cart) ESISTE, assume il valore del carrello. ALTRIMENTI è un array vuoto

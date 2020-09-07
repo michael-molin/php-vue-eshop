@@ -4,7 +4,7 @@
               <h2 class="textcenter">Nome: {{product.name}}</h2>
               <small class="textcenter">Prezzo: {{product.price}}</small>
 
-
+              <!-- se isOpen è true compare la transition -->
               <div v-if='isOpen'>
                   <transition class="fade">
                       <div class="mask-overlay" @click="isOpen = !isOpen">
@@ -50,37 +50,6 @@
 </template>
 
 <style lang="scss">
-    .card {
-        margin: 20px 0;
-    }
-    .fade {
-        transition: opacity 0.9s ease;
-    }
-    .mask-overlay{
-            position: fixed;
-            z-index: 9998;
-            top: 0px;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background-color: rgba(0, 0, 0, 0.5);
-            display:flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .panel {
-            z-index: 9999;
-            text-align: center;
-            width: 20vw;
-            margin: 0 auto;
-            padding: 20px 30px;
-            background-color: #fff;
-            border-radius: 2px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
-            transition: all 0.3s ease;
-            font-family: Helvetica, Arial, sans-serif;
-        }
 
         .example-slide {
             align-items: center;
@@ -90,11 +59,6 @@
             font-size: 1.5rem;
             justify-content: center;
             min-height: 10rem;
-         }
-
-         .img {
-           padding: 15px;
-           border-radius: 25px;
          }
 
          .btn-primary, .btn-secondary {
@@ -107,13 +71,15 @@
            text-align: center;
            margin: 0 auto;
          }
+
+
 </style>
 
 
 <script>
     import { Carousel, Slide } from 'vue-carousel';  //Importo nel componente i tag slide e carousel dalla cartella node.js vue-carousel
     export default {
-        data() {
+data() {
           return {
             products : [],
             thisProduct : {},

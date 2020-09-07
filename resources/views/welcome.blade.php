@@ -69,34 +69,30 @@
     <body>
      <div class="flex-center position-ref full-height Auth">
         <div class="container">
-          <div>
+          <!-- <div>
             <h1>ESHOP VUE LARAVEL</h1>
-          </div>
+          </div> -->
           <div class="links">
-            <a href="https://laravel.com/docs">Mirko</a>
-            <a href="https://laracasts.com">Michael</a>
+            <a href="https://github.com/Mirko2552150">LM</a>
+            <a href="https://github.com/michael-molin">MM</a>
           </div>
         </div>
       </div>
     </body>
 
-    <!-- @if (Route::has('login'))
-    <div class="top-right links">
-      @auth
-      <welcome-component-cart></welcome-component-cart>
-      @else
-      <welcome-component></welcome-component>
-      @endauth
-    </div>
-    @endif -->
-    <!-- se la rotta e' loggata -->
+
+
+
+    <!-- se utente è loggato -->
     @if(Auth::check())
+
         <!-- se utente LOGGATO User, ADMIN e' TRUE -->
         @if(Auth::user()->admin)
           <welcome-component-admin></welcome-component-admin>
           @else
           <welcome-component-cart></welcome-component-cart>
         @endif
+
       @else
         <welcome-component></welcome-component>
       @endif
