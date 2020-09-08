@@ -9,7 +9,7 @@ require('./bootstrap');
 // window.Vue = require('vue');
 import Vue from 'vue';                                                          //importo Vue dal node.js vue
 import VueCarousel from 'vue-carousel';                                         //importo il carosello da vue-carousel
-import store from "./store";
+import store from "./store";                                                    // file per passare i dati ai component fratelli
 
 /**
  * The following block of code may be used to automatically register your

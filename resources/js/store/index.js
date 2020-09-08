@@ -20,15 +20,27 @@ export default new Vuex.Store({ // vuex
  },
  getters: {},
  mutations: { // methods, tutte le funzioni necessitano dello STATE
+
+        // prende il val ITEM dal product selezionato nel componente VUE welcomeCart
         storeProduct(state, item) {
             state.cart.totalPrice= 0;
-            state.cart.listProducts.push(item);
+            state.cart.listProducts.push(item); // pusho il prodotto
             state.cart.cartCount= state.cart.listProducts.length;
             for (var i = 0; i < state.cart.listProducts.length; i++) {
                 state.cart.totalPrice += state.cart.listProducts[i].price; // somma il prezzo di ogni elemento del carrello
             }
-            state.cart.totalPrice = state.cart.totalPrice.toFixed(2);
+            state.cart.totalPrice = state.cart.totalPrice.toFixed(2); // arrotonda 2 decimali
             this.commit('saveCart');  //Salvataggio pt1: Spedisce il contenuto alla mutazione saveCart
+        },
+
+        saveCart(state) {
+          // console.log(state);
+          // Il metodo JSON.stringify() converte un oggetto o un valore JavaScript in una stringa JSON,
+          // sostituendo facoltativamente i valori se viene specificata una funzione sostitutiva o facoltativamente includendo solo le proprietà specificate
+          // se viene specificato un array replacer
+          window.localStorage.setItem('cart', JSON.stringify(state.cart.listProducts));    //Salvataggio pt2: setta il tutto in uno storage della pagina del broweser sottoforma di Json
+          window.localStorage.setItem('cartCount', state.cart.cartCount);          //Salvataggio pt2: setta il tutto in uno storage della pagina del broweser
+          window.localStorage.setItem('totalPrice', state.cart.totalPrice);          //Salvataggio pt2: setta il tutto in uno storage della pagina del broweser
         },
 
         removeFromCart(state, index) {
@@ -45,11 +57,6 @@ export default new Vuex.Store({ // vuex
             }
         },
 
-        saveCart(state) {
-            window.localStorage.setItem('cart', JSON.stringify(state.cart.listProducts));    //Salvataggio pt2: setta il tutto in uno storage della pagina del broweser sottoforma di Json
-            window.localStorage.setItem('cartCount', state.cart.cartCount);          //Salvataggio pt2: setta il tutto in uno storage della pagina del broweser
-            window.localStorage.setItem('totalPrice', state.cart.totalPrice);          //Salvataggio pt2: setta il tutto in uno storage della pagina del broweser
-        },
 
         resetCart(state) {
             state.cart.listProducts = [];

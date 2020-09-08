@@ -33,7 +33,7 @@
                             </carousel>
                             <p>{{thisProduct.description}}</p>
                             <p>In magazzino: {{thisProduct.stock}}</p>
-                            <button class="btn btn-danger" id="btn-cart" type="button" name="button" @click="sentToCart(thisProduct)">Aggiungi al Carrello</button>
+                            <button class="btn btn-danger" id="btn-cart" type="button" name="button" @click="addToCart(thisProduct)">Aggiungi al Carrello</button>
                         </div>
                     </div>
                   </transition>
@@ -104,6 +104,7 @@ data() {
             });
         },
         methods: {
+          // uguale al methods GUEST getThisProduct
             productShow(product) {
                 this.thisProduct=product;
                 // console.log(this.thisProduct);

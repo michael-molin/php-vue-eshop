@@ -36,8 +36,8 @@
           </transition>
         </div>
         <img :src='product.photo' alt="">
-        <!-- al click isOpen diventa il contario -->
-        <button class="btn btn-danger" @click='isOpen = !isOpen , getThisProduct(product)' type="button" name="button">Visualizza</button>
+        <!-- al click isOpen diventa il contario tasto VISUALIZZA GUEST / invio nel method il products selezionato -->
+        <button class="btn btn-danger" @click='isOpen = !isOpen , productShow(product)' type="button" name="button">Visualizza</button>
         <!-- <p>{{isOpen}}</p> -->
       </div>
     </div>
@@ -87,7 +87,7 @@
                 "url": "api/products",
             }).then((response) => {
                 // console.log(response);
-                this.products = response.data;
+                this.products = response.data; // var disponibile per stampare nel template
                 // console.log(this.products[0].description);
 
             }).catch((error) => {
@@ -95,9 +95,11 @@
             });
         },
         methods: {
-            getThisProduct(item) {
-                this.thisProduct=item;
-            }
+          // entra il product e lo assegno a THIS product (quello selezionato)
+          productShow(product) {
+              this.thisProduct=product;
+              // console.log(this.thisProduct);
+          },
         }
     }
 </script>

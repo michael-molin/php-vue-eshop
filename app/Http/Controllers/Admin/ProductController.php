@@ -49,6 +49,7 @@ class ProductController extends Controller
         // dd($data);
         $data['user_id'] = Auth::id();
         $data['photo'] = 'https://picsum.photos/900/600'; // inseriamo manualmente la photo
+        // dd($data);
 
         $validator = Validator::make($data, [
             'name' => 'required|string|max:50',

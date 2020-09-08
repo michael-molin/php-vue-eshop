@@ -2144,14 +2144,16 @@ __webpack_require__.r(__webpack_exports__);
       "url": "api/products"
     }).then(function (response) {
       // console.log(response);
-      _this.products = response.data; // console.log(this.products[0].description);
+      _this.products = response.data; // var disponibile per stampare nel template
+      // console.log(this.products[0].description);
     })["catch"](function (error) {
       console.log('APi ' + error);
     });
   },
   methods: {
-    getThisProduct: function getThisProduct(item) {
-      this.thisProduct = item;
+    // entra il product e lo assegno a THIS product (quello selezionato)
+    productShow: function productShow(product) {
+      this.thisProduct = product; // console.log(this.thisProduct);
     }
   }
 });
@@ -2169,8 +2171,6 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue_carousel__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-carousel */ "./node_modules/vue-carousel/dist/vue-carousel.min.js");
 /* harmony import */ var vue_carousel__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue_carousel__WEBPACK_IMPORTED_MODULE_0__);
-//
-//
 //
 //
 //
@@ -2445,6 +2445,7 @@ __webpack_require__.r(__webpack_exports__);
     });
   },
   methods: {
+    // uguale al methods GUEST getThisProduct
     productShow: function productShow(product) {
       this.thisProduct = product; // console.log(this.thisProduct);
     },
@@ -6911,7 +6912,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".card {\n  border-radius: 6px !important;\n  background-color: #edeeef !important;\n  border: 4px solid white !important;\n  color: black !important;\n  margin: 20px 0;\n}\n.fade {\n  transition: opacity 0.9s ease;\n}\n.mask-overlay {\n  position: fixed;\n  z-index: 9998;\n  top: 0px;\n  left: 0;\n  width: 100vw;\n  height: 100vh;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  background-color: rgba(0, 0, 0, 0.3) !important;\n}\n.panel {\n  z-index: 9999;\n  text-align: center;\n  width: 20vw;\n  margin: 0 auto;\n  padding: 20px 30px;\n  background-color: #fff;\n  border-radius: 2px;\n  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);\n  transition: all 0.3s ease;\n  font-family: Helvetica, Arial, sans-serif;\n  background-color: rgba(237, 238, 239, 0.4) !important;\n  border-radius: 10px !important;\n  /* width: 40vw!important; */\n}\n.example-slide {\n  align-items: center;\n  background-color: #666;\n  color: #999;\n  display: flex;\n  font-size: 1.5rem;\n  justify-content: center;\n  min-height: 10rem;\n}\n.btn-primary, .btn-secondary {\n  width: 49%;\n  float: left;\n  margin: 5px;\n}\n.textcenter {\n  text-align: center;\n  margin: 0 auto;\n}", ""]);
+exports.push([module.i, ".card {\n  border-radius: 6px !important;\n  background-color: #edeeef !important;\n  border: 4px solid white !important;\n  color: black !important;\n  margin: 20px 0;\n}\n.fade {\n  transition: opacity 0.9s ease;\n}\n.mask-overlay {\n  position: fixed;\n  z-index: 9998;\n  top: 0px;\n  left: 0;\n  width: 100vw;\n  height: 100vh;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n.panel {\n  z-index: 9999;\n  text-align: center;\n  width: 20vw;\n  margin: 0 auto;\n  padding: 20px 30px;\n  background-color: #fff;\n  border-radius: 2px;\n  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);\n  transition: all 0.3s ease;\n  font-family: Helvetica, Arial, sans-serif;\n  border-radius: 10px !important;\n}\n.example-slide {\n  align-items: center;\n  background-color: #666;\n  color: #999;\n  display: flex;\n  font-size: 1.5rem;\n  justify-content: center;\n  min-height: 10rem;\n}\n.btn-primary, .btn-secondary {\n  width: 49%;\n  float: left;\n  margin: 5px;\n}\n.textcenter {\n  text-align: center;\n  margin: 0 auto;\n}", ""]);
 
 // exports
 
@@ -39225,7 +39226,7 @@ var render = function() {
             attrs: { type: "button", name: "button" },
             on: {
               click: function($event) {
-                ;(_vm.isOpen = !_vm.isOpen), _vm.getThisProduct(product)
+                ;(_vm.isOpen = !_vm.isOpen), _vm.productShow(product)
               }
             }
           },
@@ -39544,7 +39545,7 @@ var render = function() {
                               },
                               on: {
                                 click: function($event) {
-                                  return _vm.sentToCart(_vm.thisProduct)
+                                  return _vm.addToCart(_vm.thisProduct)
                                 }
                               }
                             },
@@ -53056,6 +53057,7 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js"); // window
 
  //importo il carosello da vue-carousel
 
+ // file per passare i dati ai component fratelli
 
 /**
  * The following block of code may be used to automatically register your
@@ -53590,17 +53592,31 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
   getters: {},
   mutations: {
     // methods, tutte le funzioni necessitano dello STATE
+    // prende il val ITEM dal product selezionato nel componente VUE welcomeCart
     storeProduct: function storeProduct(state, item) {
       state.cart.totalPrice = 0;
-      state.cart.listProducts.push(item);
+      state.cart.listProducts.push(item); // pusho il prodotto
+
       state.cart.cartCount = state.cart.listProducts.length;
 
       for (var i = 0; i < state.cart.listProducts.length; i++) {
         state.cart.totalPrice += state.cart.listProducts[i].price; // somma il prezzo di ogni elemento del carrello
       }
 
-      state.cart.totalPrice = state.cart.totalPrice.toFixed(2);
+      state.cart.totalPrice = state.cart.totalPrice.toFixed(2); // arrotonda 2 decimali
+
       this.commit('saveCart'); //Salvataggio pt1: Spedisce il contenuto alla mutazione saveCart
+    },
+    saveCart: function saveCart(state) {
+      // console.log(state);
+      // Il metodo JSON.stringify() converte un oggetto o un valore JavaScript in una stringa JSON,
+      // sostituendo facoltativamente i valori se viene specificata una funzione sostitutiva o facoltativamente includendo solo le proprietà specificate
+      // se viene specificato un array replacer
+      window.localStorage.setItem('cart', JSON.stringify(state.cart.listProducts)); //Salvataggio pt2: setta il tutto in uno storage della pagina del broweser sottoforma di Json
+
+      window.localStorage.setItem('cartCount', state.cart.cartCount); //Salvataggio pt2: setta il tutto in uno storage della pagina del broweser
+
+      window.localStorage.setItem('totalPrice', state.cart.totalPrice); //Salvataggio pt2: setta il tutto in uno storage della pagina del broweser
     },
     removeFromCart: function removeFromCart(state, index) {
       if (index > -1) {
@@ -53615,13 +53631,6 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
         state.cart.totalPrice = state.cart.totalPrice.toFixed(2);
         this.commit('saveCart'); // invoca la MUTATIONS senza passargli dati , li prende dallo state
       }
-    },
-    saveCart: function saveCart(state) {
-      window.localStorage.setItem('cart', JSON.stringify(state.cart.listProducts)); //Salvataggio pt2: setta il tutto in uno storage della pagina del broweser sottoforma di Json
-
-      window.localStorage.setItem('cartCount', state.cart.cartCount); //Salvataggio pt2: setta il tutto in uno storage della pagina del broweser
-
-      window.localStorage.setItem('totalPrice', state.cart.totalPrice); //Salvataggio pt2: setta il tutto in uno storage della pagina del broweser
     },
     resetCart: function resetCart(state) {
       state.cart.listProducts = [];

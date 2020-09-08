@@ -84,6 +84,8 @@
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
+
+                                    <!-- passo alla rotta history lo user id per stampare i recond relativi agli order passando dal welcome controller -->
                                     <a class="dropdown-item" href="{{route('history', Auth::user()->id)}}">I tuoi ordini</a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

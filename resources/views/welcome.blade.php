@@ -73,7 +73,7 @@
             <h1>ESHOP VUE LARAVEL</h1>
           </div> -->
           <div class="links">
-            <a href="https://github.com/Mirko2552150">LM</a>
+            <a href="https://github.com/Mirko2552150">Created LM</a>
             <a href="https://github.com/michael-molin">MM</a>
           </div>
         </div>
