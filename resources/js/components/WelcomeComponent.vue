@@ -1,6 +1,6 @@
 <template>
-    <div class="container">
-      <div class="card container-product" v-for='(product, index) in products' :key='index' >
+    <div class="container box-cards">
+      <div class="card" v-for='(product, index) in products' :key='index' >
         <h2 class="textcenter">Nome: {{product.name}}</h2>
         <!-- <p>Descrizione: {{product.description}}</p> -->
         <small class="textcenter">Prezzo: {{product.price}}</small>
@@ -21,14 +21,12 @@
                             <img :src='thisProduct.photo'>
                         </slide>
                         <slide>
-                           <img :src='thisProduct.photo'>
+                           <img :src='thisProduct.photo2'>
                         </slide>
                         <slide>
-                           <img :src='thisProduct.photo'>
+                           <img :src='thisProduct.photo3'>
                         </slide>
-                        <slide>
-                           <img :src='thisProduct.photo'>
-                        </slide>
+
                     </carousel>
                     <p>{{thisProduct.description}}</p>
                 </div>
@@ -65,6 +63,19 @@
            text-align: center;
            margin: 0 auto;
          }
+
+         .box-cards {
+          display: flex;
+          align-items: center;
+          justify-content:space-between;
+          flex-wrap: wrap;
+          text-align: center;
+         }
+
+         .card {
+           width: 400px;
+         }
+
 
 </style>
 

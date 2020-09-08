@@ -32,10 +32,10 @@
                 <label for="description">Descrizione</label>
                 <textarea name="description" id="description" cols="30" rows="10" class="form-control" value="{{old('description')}}"></textarea>
             </div>
-            <div class="new-photo">
+            {{-- <div class="new-photo">
                 <label for="photo">Aggiungi nuova foto: </label>
                 <input type="file" name="photo" id="photo">
-            </div>
+            </div> --}}
             <input class="btn btn-primary" type="submit" value="Salva">
           </form>
         </div>

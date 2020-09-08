@@ -1965,6 +1965,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['app'],
   // prendo i dati inseriti nel file app.blade
@@ -2054,6 +2055,17 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue_carousel__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-carousel */ "./node_modules/vue-carousel/dist/vue-carousel.min.js");
 /* harmony import */ var vue_carousel__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue_carousel__WEBPACK_IMPORTED_MODULE_0__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -2287,6 +2299,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
  //Importo nel componente i tag slide e carousel dalla cartella node.js vue-carousel
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2340,6 +2363,18 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue_carousel__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-carousel */ "./node_modules/vue-carousel/dist/vue-carousel.min.js");
 /* harmony import */ var vue_carousel__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue_carousel__WEBPACK_IMPORTED_MODULE_0__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -6893,7 +6928,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".example-slide {\n  align-items: center;\n  background-color: #666;\n  color: #999;\n  display: flex;\n  font-size: 1.5rem;\n  justify-content: center;\n  min-height: 10rem;\n}\n.btn-primary, .btn-secondary {\n  width: 49%;\n  float: left;\n  margin: 5px;\n}\n.textcenter {\n  text-align: center;\n  margin: 0 auto;\n}", ""]);
+exports.push([module.i, ".example-slide {\n  align-items: center;\n  background-color: #666;\n  color: #999;\n  display: flex;\n  font-size: 1.5rem;\n  justify-content: center;\n  min-height: 10rem;\n}\n.btn-primary, .btn-secondary {\n  width: 49%;\n  float: left;\n  margin: 5px;\n}\n.textcenter {\n  text-align: center;\n  margin: 0 auto;\n}\n.box-cards {\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  flex-wrap: wrap;\n  text-align: center;\n}\n.card {\n  width: 400px;\n}", ""]);
 
 // exports
 
@@ -6912,7 +6947,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".card {\n  border-radius: 6px !important;\n  background-color: #edeeef !important;\n  border: 4px solid white !important;\n  color: black !important;\n  margin: 20px 0;\n}\n.fade {\n  transition: opacity 0.9s ease;\n}\n.mask-overlay {\n  position: fixed;\n  z-index: 9998;\n  top: 0px;\n  left: 0;\n  width: 100vw;\n  height: 100vh;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n.panel {\n  z-index: 9999;\n  text-align: center;\n  width: 20vw;\n  margin: 0 auto;\n  padding: 20px 30px;\n  background-color: #fff;\n  border-radius: 2px;\n  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);\n  transition: all 0.3s ease;\n  font-family: Helvetica, Arial, sans-serif;\n  border-radius: 10px !important;\n}\n.example-slide {\n  align-items: center;\n  background-color: #666;\n  color: #999;\n  display: flex;\n  font-size: 1.5rem;\n  justify-content: center;\n  min-height: 10rem;\n}\n.btn-primary, .btn-secondary {\n  width: 49%;\n  float: left;\n  margin: 5px;\n}\n.textcenter {\n  text-align: center;\n  margin: 0 auto;\n}", ""]);
+exports.push([module.i, ".card {\n  border-radius: 6px !important;\n  background-color: #edeeef !important;\n  border: 4px solid white !important;\n  color: black !important;\n  margin: 20px 0;\n}\n.fade {\n  transition: opacity 0.9s ease;\n}\n.mask-overlay {\n  position: fixed;\n  z-index: 9998;\n  top: 0px;\n  left: 0;\n  width: 100vw;\n  height: 100vh;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n.panel {\n  z-index: 9999;\n  text-align: center;\n  width: 20vw;\n  margin: 0 auto;\n  padding: 20px 30px;\n  background-color: #fff;\n  border-radius: 2px;\n  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);\n  transition: all 0.3s ease;\n  font-family: Helvetica, Arial, sans-serif;\n  border-radius: 10px !important;\n}\n.example-slide {\n  align-items: center;\n  background-color: #666;\n  color: #999;\n  display: flex;\n  font-size: 1.5rem;\n  justify-content: center;\n  min-height: 10rem;\n}\n.btn-primary, .btn-secondary {\n  width: 49%;\n  float: left;\n  margin: 5px;\n}\n.textcenter {\n  text-align: center;\n  margin: 0 auto;\n}\n.box-cards {\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  flex-wrap: wrap;\n  text-align: center;\n}\n.card {\n  width: 400px;\n}", ""]);
 
 // exports
 
@@ -6931,7 +6966,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".example-slide {\n  align-items: center;\n  background-color: #666;\n  color: #999;\n  display: flex;\n  font-size: 1.5rem;\n  justify-content: center;\n  min-height: 10rem;\n}\n.btn-primary, .btn-secondary {\n  width: 49%;\n  float: left;\n  margin: 5px;\n}\n.textcenter {\n  text-align: center;\n  margin: 0 auto;\n}", ""]);
+exports.push([module.i, ".example-slide {\n  align-items: center;\n  background-color: #666;\n  color: #999;\n  display: flex;\n  font-size: 1.5rem;\n  justify-content: center;\n  min-height: 10rem;\n}\n.btn-primary, .btn-secondary {\n  width: 49%;\n  float: left;\n  margin: 5px;\n}\n.textcenter {\n  text-align: center;\n  margin: 0 auto;\n}\n.box-cards {\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  flex-wrap: wrap;\n}\n.box-button {\n  display: flex;\n}\n.card {\n  width: 400px;\n}", ""]);
 
 // exports
 
@@ -38854,29 +38889,28 @@ var render = function() {
   return _c("div", { staticClass: "navbar-item has-dropdown is-hoverable" }, [
     _c("div", [
       _c("i", { staticClass: "fas fa-shopping-cart" }),
-      _vm._v(" " + _vm._s(_vm.$store.state.cart.cartCount) + "\n    ")
-    ]),
-    _vm._v(" "),
-    _c("input", {
-      directives: [
-        {
-          name: "model",
-          rawName: "v-model",
-          value: _vm.userId,
-          expression: "userId"
-        }
-      ],
-      attrs: { type: "hidden", name: "userId" },
-      domProps: { value: _vm.userId },
-      on: {
-        input: function($event) {
-          if ($event.target.composing) {
-            return
+      _vm._v(" " + _vm._s(_vm.$store.state.cart.cartCount) + "\n        "),
+      _c("input", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.userId,
+            expression: "userId"
           }
-          _vm.userId = $event.target.value
+        ],
+        attrs: { type: "hidden", name: "userId" },
+        domProps: { value: _vm.userId },
+        on: {
+          input: function($event) {
+            if ($event.target.composing) {
+              return
+            }
+            _vm.userId = $event.target.value
+          }
         }
-      }
-    }),
+      })
+    ]),
     _vm._v(" "),
     _vm.$store.state.cart.listProducts.length > 0
       ? _c(
@@ -38930,7 +38964,6 @@ var render = function() {
               {
                 staticClass: "box-article navbar-item",
                 staticStyle: { cursor: "pointer" },
-                attrs: { class: "box-article navbar-item" },
                 on: {
                   click: function($event) {
                     _vm.paymentsOpen = !_vm.paymentsOpen
@@ -39122,9 +39155,9 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "container" },
+    { staticClass: "container box-cards" },
     _vm._l(_vm.products, function(product, index) {
-      return _c("div", { key: index, staticClass: "card container-product" }, [
+      return _c("div", { key: index, staticClass: "card" }, [
         _c("h2", { staticClass: "textcenter" }, [
           _vm._v("Nome: " + _vm._s(product.name))
         ]),
@@ -39186,19 +39219,13 @@ var render = function() {
                               _vm._v(" "),
                               _c("slide", [
                                 _c("img", {
-                                  attrs: { src: _vm.thisProduct.photo }
+                                  attrs: { src: _vm.thisProduct.photo2 }
                                 })
                               ]),
                               _vm._v(" "),
                               _c("slide", [
                                 _c("img", {
-                                  attrs: { src: _vm.thisProduct.photo }
-                                })
-                              ]),
-                              _vm._v(" "),
-                              _c("slide", [
-                                _c("img", {
-                                  attrs: { src: _vm.thisProduct.photo }
+                                  attrs: { src: _vm.thisProduct.photo3 }
                                 })
                               ])
                             ],
@@ -39261,7 +39288,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "container" },
+    { staticClass: "container box-cards" },
     _vm._l(_vm.products, function(product, index) {
       return _c("div", { key: index, staticClass: "card" }, [
         _c("h2", [_vm._v("Nome: " + _vm._s(product.name))]),
@@ -39321,19 +39348,13 @@ var render = function() {
                               _vm._v(" "),
                               _c("slide", [
                                 _c("img", {
-                                  attrs: { src: _vm.thisProduct.photo }
+                                  attrs: { src: _vm.thisProduct.photo2 }
                                 })
                               ]),
                               _vm._v(" "),
                               _c("slide", [
                                 _c("img", {
-                                  attrs: { src: _vm.thisProduct.photo }
-                                })
-                              ]),
-                              _vm._v(" "),
-                              _c("slide", [
-                                _c("img", {
-                                  attrs: { src: _vm.thisProduct.photo }
+                                  attrs: { src: _vm.thisProduct.photo3 }
                                 })
                               ])
                             ],
@@ -39441,7 +39462,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "container" },
+    { staticClass: "container box-cards" },
     _vm._l(_vm.products, function(product, index) {
       return _c("div", { key: index, staticClass: "card" }, [
         _c("h2", { staticClass: "textcenter" }, [
@@ -39505,19 +39526,13 @@ var render = function() {
                               _vm._v(" "),
                               _c("slide", [
                                 _c("img", {
-                                  attrs: { src: _vm.thisProduct.photo }
+                                  attrs: { src: _vm.thisProduct.photo2 }
                                 })
                               ]),
                               _vm._v(" "),
                               _c("slide", [
                                 _c("img", {
-                                  attrs: { src: _vm.thisProduct.photo }
-                                })
-                              ]),
-                              _vm._v(" "),
-                              _c("slide", [
-                                _c("img", {
-                                  attrs: { src: _vm.thisProduct.photo }
+                                  attrs: { src: _vm.thisProduct.photo3 }
                                 })
                               ])
                             ],
@@ -39526,12 +39541,6 @@ var render = function() {
                           _vm._v(" "),
                           _c("p", [
                             _vm._v(_vm._s(_vm.thisProduct.description))
-                          ]),
-                          _vm._v(" "),
-                          _c("p", [
-                            _vm._v(
-                              "In magazzino: " + _vm._s(_vm.thisProduct.stock)
-                            )
                           ]),
                           _vm._v(" "),
                           _c(
@@ -53662,8 +53671,8 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\MAMP\htdocs\php-vue-eshop\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! D:\MAMP\htdocs\php-vue-eshop\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\MAMP\htdocs\php-vue-eshop\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\MAMP\htdocs\php-vue-eshop\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

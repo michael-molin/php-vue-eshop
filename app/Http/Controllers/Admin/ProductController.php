@@ -46,9 +46,11 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
-        // dd($data);
+        $numRan =  rand ( 0 , 100 );
         $data['user_id'] = Auth::id();
-        $data['photo'] = 'https://picsum.photos/900/600'; // inseriamo manualmente la photo
+        $data['photo'] = 'https://picsum.photos/500/300?random=' . $numRan; // inseriamo manualmente la photo
+        $data['photo2'] = 'https://picsum.photos/500/300?random=' . $numRan; // inseriamo manualmente la photo
+        $data['photo3'] = 'https://picsum.photos/500/300?random=' . $numRan; // inseriamo manualmente la photo
         // dd($data);
 
         $validator = Validator::make($data, [

@@ -2,8 +2,9 @@
     <div class="navbar-item has-dropdown is-hoverable">
         <div>
             <i class="fas fa-shopping-cart"></i> {{ $store.state.cart.cartCount }}
+            <input type="hidden" name="userId" v-model="userId">
         </div>
-        <input type="hidden" name="userId" v-model="userId">
+        
         <div v-if="$store.state.cart.listProducts.length > 0" class="navbar-dropdown is-boxed is-right side-menu shadow-sm box-cart">
 
             <!-- con la VAR $store, entro dentro state del file index.js -->
@@ -20,7 +21,7 @@
                 </div>
             </span>
             <hr class="navbar-divider">
-            <div class="" class="box-article navbar-item" @click="paymentsOpen = !paymentsOpen" style="cursor:pointer;">
+            <div class="box-article navbar-item" @click="paymentsOpen = !paymentsOpen" style="cursor:pointer;">
               <span >
                   Checkout
               </span>

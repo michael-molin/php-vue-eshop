@@ -1,5 +1,5 @@
 <template>
-        <div class="container">
+        <div class="container box-cards">
           <div v-for='(product, index) in products' :key='index' class="card">
               <h2 class="textcenter">Nome: {{product.name}}</h2>
               <small class="textcenter">Prezzo: {{product.price}}</small>
@@ -22,17 +22,13 @@
                                     <img :src='thisProduct.photo'>
                                 </slide>
                                 <slide>
-                                   <img :src='thisProduct.photo'>
+                                   <img :src='thisProduct.photo2'>
                                 </slide>
                                 <slide>
-                                   <img :src='thisProduct.photo'>
-                                </slide>
-                                <slide>
-                                   <img :src='thisProduct.photo'>
+                                   <img :src='thisProduct.photo3'>
                                 </slide>
                             </carousel>
                             <p>{{thisProduct.description}}</p>
-                            <p>In magazzino: {{thisProduct.stock}}</p>
                             <button class="btn btn-danger" id="btn-cart" type="button" name="button" @click="addToCart(thisProduct)">Aggiungi al Carrello</button>
                         </div>
                     </div>
@@ -71,6 +67,22 @@
            text-align: center;
            margin: 0 auto;
          }
+
+         .box-cards {
+          display: flex;
+          align-items: center;
+          justify-content:space-between;
+          flex-wrap: wrap;
+         }
+
+         .box-button {
+           display: flex;
+         }
+
+         .card {
+           width: 400px;
+         }
+
 
 
 </style>

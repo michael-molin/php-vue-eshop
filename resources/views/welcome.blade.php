@@ -66,41 +66,40 @@
     @extends('layouts.app')
 
     @section('content')
-    <body>
-     <div class="flex-center position-ref full-height Auth">
+    <div class="flex-center position-ref full-height Auth">
         <div class="container">
-          <!-- <div>
+        <!-- <div>
             <h1>ESHOP VUE LARAVEL</h1>
-          </div> -->
-          <div class="links">
-            <a href="https://github.com/Mirko2552150">Created LM</a>
-            <a href="https://github.com/michael-molin">MM</a>
-          </div>
-        </div>
-      </div>
-    </body>
-
-
-
-
-    <!-- se utente è loggato -->
-    @if(Auth::check())
+        </div> -->
+            @if(Auth::check())
 
         <!-- se utente LOGGATO User, ADMIN e' TRUE -->
-        @if(Auth::user()->admin)
-          <welcome-component-admin></welcome-component-admin>
-          @else
-          <welcome-component-cart></welcome-component-cart>
-        @endif
-
-      @else
-        <welcome-component></welcome-component>
-      @endif
+            @if(Auth::user()->admin)
+                <welcome-component-admin></welcome-component-admin>
+            @else
+                <welcome-component-cart></welcome-component-cart>
+            @endif
+            @else
+                <welcome-component></welcome-component>
+            @endif
+            <div class="links">
+                
+                <small>Created By: <a href="https://github.com/Mirko2552150">LM</a> & <a href="https://github.com/michael-molin">MM</a> </small>
+                
+            </div>
+        </div>
+    </div>
+    
     @endsection
-</html>
+    
 
 <style>
     .flex-container {
         display: flex;
+    }
+
+    .links {
+        text-align: center;
+        margin: 0 auto;
     }
 </style>

@@ -52,7 +52,7 @@
                     </ul>
 
                     <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
+                    <ul class="navbar-nav ml-auto" >
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
@@ -64,7 +64,7 @@
                                 </li>
                             @endif
                         @else
-                            <li class="nav-item dropdown">
+                            <li class="nav-item dropdown" id="nav-right">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
@@ -113,6 +113,7 @@
     background-image: url('https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Ffg-a.com%2Fwallpapers%2F2018-white-texture-background-image.jpg&f=1&nofb=1');
     /* background-repeat: no-repeat; */
     background-size: auto;
+
   }
 
   .admin-panel {
@@ -120,5 +121,12 @@
     border: 1px solid black;
     padding: 2px;
     border-radius: 3px;
+  }
+
+  #nav-right {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
   }
 </style>
