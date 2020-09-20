@@ -25,10 +25,6 @@
                 <input type="text" name="price" id="price" class="form-control" value="{{old('price')}}">
             </div>
             <div class="form-group">
-                <label for="stock">Stock</label>
-                <input type="text" name="stock" id="stock" class="form-control" value="{{old('stock')}}">
-            </div>
-            <div class="form-group">
                 <label for="description">Descrizione</label>
                 <textarea name="description" id="description" cols="30" rows="10" class="form-control" value="{{old('description')}}"></textarea>
             </div>

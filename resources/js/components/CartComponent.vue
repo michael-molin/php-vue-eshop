@@ -1,11 +1,13 @@
 <template>
     <div class="navbar-item has-dropdown is-hoverable">
         <div>
-            <i class="fas fa-shopping-cart"></i> {{ $store.state.cart.cartCount }}
-            <input type="hidden" name="userId" v-model="userId">
+          <button @click="cartIsOpen = !cartIsOpen">
+            <i class="fas fa-shopping-cart" ></i> {{ $store.state.cart.cartCount }}
+          </button>
+          <input type="hidden" name="userId" v-model="userId">
         </div>
         
-        <div v-if="$store.state.cart.listProducts.length > 0" class="navbar-dropdown is-boxed is-right side-menu shadow-sm box-cart">
+        <div v-show="cartIsOpen" class="navbar-dropdown is-boxed is-right side-menu shadow-sm box-cart">
 
             <!-- con la VAR $store, entro dentro state del file index.js -->
             <div v-for="(item,index) in $store.state.cart.listProducts" :key="index">
@@ -26,7 +28,7 @@
                   Checkout
               </span>
             </div>
-            <div v-if='paymentsOpen'>
+            <div v-show='paymentsOpen'>
                 <transition class="fade">
                     <div class="mask-overlay" @click="paymentsOpen = !paymentsOpen">
                       <!-- click.stop = ferma esecuzione click mouse, evita che si chiuda cliccando il modale -->
@@ -34,17 +36,21 @@
                         <h3>Totale: {{ $store.state.cart.totalPrice }}€</h3>
                         <h5>Numero Articoli: {{ $store.state.cart.cartCount }}</h5>
                         <div class="form-group text-center">
-                            <form>
-                                <input class="form-control col-md-6" type="text" name="nm-carta" placeholder="Numero Carta">
-                                <input class="form-control col-md-6 " type="text" name="exp-carta" placeholder="Scadenza Carta">
-                                <input class="form-control col-md-6" type="text" name="code-carta" placeholder="Codice Segreto">
-                                <!-- al click invio carrello all function payment -->
-                                <input @click='payment()' class="btn btn-primary col-md-6" name="" value="Paga">
-                            </form>
-                            <div class="credit">
-                              <i class="fab fa-cc-mastercard"></i>
-                              <i class="fab fa-cc-visa"></i>
-                              <i class="fab fa-paypal"></i>
+                            <div>
+                              <div class="card-header"></div>
+                              <p>Per pagamento a buon fine: 4242 4242 4242 4242</p>
+                              <p>Per pagamento rifiutato: 4000 0000 0000 9995</p>
+                              <div class="card-body">
+                                  <Label for="card-holder-name"> Nome Titolare Carta: </Label>
+                                  <input id="card-holder-name" type="text">
+                                  <div id="card" ref="card"></div>
+                                  <button id="card-button" @click="toPayment" :disabled="isDisable"> 
+                                      <i class="fab fa-cc-stripe" v-if="isPay"></i>
+                                      <i class="fas fa-spinner" id="loading" v-if="isLoading"></i>
+                                      <i class="fas fa-check-circle" v-if="isOk"></i>
+                                      <i class="fas fa-times" v-if="isError"></i>
+                                  </button>
+                              </div>
                             </div>
                         </div>
                       </div>
@@ -62,13 +68,28 @@
         props: ['app'], // prendo i dati inseriti nel file app.blade
         data() {
             return {
+                cartIsOpen : false,
+                spk:'pk_test_51HMa46FUEyYvJlZwxKqaMFLFSJ8cci1OWaA0Adeavbtm2M8AEkShK10Hlijudr0m7NFYRCllxhIumqWa6Ib0i9Az00pEC788en',
+                stripe: '',
+                card: '',
+                isPay: true,
+                isLoading : false,
+                isOk : false,
+                isError : false,
+                isDisable : false,
                 paymentsOpen : false,
                 userId: this.$userId
             }
         },
 
-        mounted() {   //Si avvia solo alla creazione o montaggio del componente
-
+        mounted () {   //Si avvia solo alla creazione o montaggio del componente
+          var self=this;
+            self.stripe= Stripe(self.spk);
+            self.card = self.stripe.elements().create('card', {
+                hidePostalCode : true,
+            });
+            console.log(self.card);
+            self.card.mount(self.$refs.card);
         },
 
         methods: {
@@ -82,14 +103,14 @@
               this.$store.state.cart.userId = this.userId;
               var cart = this.$store.state.cart;
               var self = this;      //Per richiamare this all'interno di Axios, bisogna salvare this in una variabile e richiamarla dopo
-              // console.log(cart); // carrello disponibile in tutto VUE
+              console.log(cart); // carrello disponibile in tutto VUE
 
               axios.post('api/checkout', cart) // chiamata post, endpoint e variabile
               .then(function (response) {
-               // window.location.href = "checkout"; // simile al link
-               console.log(this);   //This all'interno di .then non è il this dell'esterno
-               self.$store.commit('resetCart');
-               self.paymentsOpen = false;
+              window.location.href = "checkout"; // simile al link
+              console.log(this);   //This all'interno di .then non è il this dell'esterno
+              self.$store.commit('resetCart');
+              self.paymentsOpen = false;
 
               })
               .catch(function (error) {
@@ -103,6 +124,47 @@
                 this.$store.commit('resetCart');
                 this.paymentsOpen = false;
                 alert('pagamento effettuato');
+            },
+
+            async toPayment() {
+                this.$store.state.cart.userId = this.userId;
+                var cart = this.$store.state.cart;
+                var self = this;
+                this.isDisable=true;
+                this.isPay= false;
+                this.isLoading= true;
+                const cardButton = document.getElementById('card-button');
+                const cardHolderName = document.getElementById('card-holder-name');
+                const { paymentMethod, error } = await this.stripe.createPaymentMethod({
+                    type: 'card',
+                    card: this.card,
+                    billing_details: {
+                        name: cardHolderName.value,
+                    }
+                });
+
+                if (error) {
+                    this.isLoading = false;
+                    this.isError = true;
+                    alert('Errore pagamento');
+
+                    
+                } else {
+                    var payData = {
+                        pay : paymentMethod,
+                        cart: cart
+                    }
+                    console.log(payData);
+                    axios.post('api/checkout', payData).then(response => {
+                        if(response.status=== 200) {
+                            this.isLoading= false;
+                            this.isOk= true;
+                            self.$store.commit('resetCart');
+                            this.isLoading= false;
+                            this.isOk= true;
+                        }
+                    })
+                }
             }
 
 
@@ -120,12 +182,11 @@
 
     .side-menu {
         position: fixed;
-        top: 0;
+        top: 65px;
         right: 0;
         height: 100%;
-        width: 500px;
-        padding-top: 150px;
-        z-index: 0;
+        width:200px;
+        padding-top: 30px;
     }
 
     .mask-overlay{

@@ -11,6 +11,7 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="https://js.stripe.com/v3/"></script>
 
     <!--FontAwesome -->
     <script src="https://kit.fontawesome.com/a51364b666.js" crossorigin="anonymous"></script>
@@ -35,17 +36,17 @@
     @endif
 
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm" style="z-index:999;">
+        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm fixed-top">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     <!-- {{ config('app.name', 'Laravel') }} -->
                     <h3 style="color: red;">Eshop <i class="fab fa-laravel"></i>  <i class="fab fa-vuejs"></i> </h3>
                 </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+                {{-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
-                </button>
+                </button> --}}
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <div  id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
 
@@ -74,14 +75,14 @@
 
                                 <!-- se ADMIN compare può accedere al link ADMIN PANEL-->
                                 @if(Auth::user()->admin)
-                                  <a class="admin-panel btn" href="{{route('admin.products.index')}}">Admin Dashboard</a>
+                                    <a class="admin-panel btn" href="{{route('admin.products.index')}}">Admin Dashboard</a>
                                 @endif
 
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
+                                        onclick="event.preventDefault();
+                                        document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
 
@@ -108,13 +109,6 @@
 
 
 <style leng="scss">
-  .py-4 {
-    /* background-color: pink; */
-    background-image: url('https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Ffg-a.com%2Fwallpapers%2F2018-white-texture-background-image.jpg&f=1&nofb=1');
-    /* background-repeat: no-repeat; */
-    background-size: auto;
-
-  }
 
   .admin-panel {
     background-color: white;
@@ -128,5 +122,9 @@
       flex-direction: row;
       align-items: center;
       justify-content: center;
+  }
+
+  .navbar {
+      height: 65px;
   }
 </style>

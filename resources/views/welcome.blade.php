@@ -66,7 +66,7 @@
     @extends('layouts.app')
 
     @section('content')
-    <div class="flex-center position-ref full-height Auth">
+    <div class="flex-center position-ref full-height Auth" style="padding-top:80px;">
         <div class="container">
         <!-- <div>
             <h1>ESHOP VUE LARAVEL</h1>
@@ -89,7 +89,6 @@
             </div>
         </div>
     </div>
-    
     @endsection
     
 

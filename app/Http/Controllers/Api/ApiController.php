@@ -5,8 +5,10 @@ use App\Product;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cookie;
-use Illuminate\Support\Facades\Session;use Illuminate\Support\Facades\Auth;
-
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Auth;
+use Laravel\Cashier\Cashier;
+use Laravel\Cashier\Payment;
 
 use App\User;
 use App\Order;
@@ -27,17 +29,28 @@ class ApiController extends Controller
 
     public function getCheckout(Request $request)
     {
-        $cart = $request->getContent();
+        $data = $request->getContent();
+        $cart = $data->cart;
         $cart = json_decode($cart);
+        $paymentMethod = $data->pay->id;
+        $paymentMethod = json_decode($paymentMethod);
         $order = new Order;
-        $user_idParse = $cart->userId;
-        $order['user_id'] = intval($user_idParse);
-        $total_parse = $cart->totalPrice;
-        $order['total'] = intval($total_parse);
+        $user_id = $cart->intval(userId);
+        $order['user_id'] = $user_id;
+        $totalPrice = $cart->intval(totalPrice);
+        $order['total'] = $totalPrice;
         $order->save();
-        foreach ($cart->listProducts as $product) { // ciclo ci permette di ciclare tutti i componenti dentro cart
-            $order->products()->attach($product->id); // dalla TAB order vai alla product e ATTACH l'id del prodotto
+        
+        $user = User::findOrFail($user_idParse);
+        try {
+            $stripeCharge = $user->charge($totalPrice * 100, $paymentMethod);
+            foreach ($cart->listProducts as $product) { // ciclo ci permette di ciclare tutti i componenti dentro cart
+                $order->products()->attach($product->id); // dalla TAB order vai alla product e ATTACH l'id del prodotto
+            }
+        } catch (Exception $e) {
+            echo $e->getMessage();
         }
+        
     }
 
     /**

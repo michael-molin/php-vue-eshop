@@ -28,7 +28,6 @@
                         </slide>
                     </carousel>
                     <p>{{thisProduct.description}}</p>
-                    <p>In magazzino: {{thisProduct.stock}}</p>
                     <button class="btn btn-danger" id="btn-cart" type="button" name="button" @click="sentToCart(thisProduct)">Aggiungi al Carrello</button>
                 </div>
             </div>

@@ -57,7 +57,6 @@ class ProductController extends Controller
             'name' => 'required|string|max:50',
             'price' => 'required|numeric',
             'description' => 'required|string',
-            'stock' => 'required|numeric',
             'photo' => 'required|string',
         ]);
 
@@ -119,7 +118,6 @@ class ProductController extends Controller
           'name' => 'required|string|max:50',
           'price' => 'required|numeric',
           'description' => 'required|string',
-          'stock' => 'required|numeric',
           // 'photo' => 'required|string',
       ]);
 
