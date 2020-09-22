@@ -1987,11 +1987,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['app'],
   // prendo i dati inseriti nel file app.blade
@@ -7090,7 +7085,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.removeBtn {\n    margin-right: 1rem;\n    color: red;\n    cursor: pointer;\n}\n.side-menu {\n    position: fixed;\n    top: 65px;\n    right: 0;\n    height: 100%;\n    width:200px;\n    padding-top: 30px;\n}\n.mask-overlay{\n        position: fixed;\n        z-index: 9998;\n        top: 0px;\n        left: 0;\n        width: 100vw;\n        height: 100vh;\n        background-color: rgba(0, 0, 0, 0.9);\n        display:flex;\n        justify-content: center;\n        align-items: center;\n}\n.panel {\n        z-index: 9999;\n        text-align: center;\n        width: 85vw;\n        height: 85vh;\n        margin: 0 auto;\n        padding: 20px 30px;\n        background-color: #fff;\n        border-radius: 2px;\n        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);\n        transition: all 0.3s ease;\n        font-family: Helvetica, Arial, sans-serif;\n}\nform {\n      display: flex;\n      flex-direction: column;\n      align-items: center;\n}\nform input {\n      margin: 10px;\n}\n.credit .fab {\n      font-size: 50px;\n      padding: 5px;\n      color: #3490dc;\n      cursor: pointer;\n}\n.credit .fab:hover {\n      color: blue;\n}\n.box-article {\n      display: flex;\n      justify-content: space-around;\n      align-items: center;\n      margin-bottom: 3px;\n      background-color: white;\n      border: 1px solid rgba(0,0,0,0.1);\n      height: 50px;\n}\n.box-cart {\n      background: rgb(255,255,255);\n      background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(200,200,200,1) 100%);\n      /* margin-top: 78px; */\n      padding-top: 3px;\n}\n.fa-times {\n      color: red;\n      font-size: 20px;\n}\n\n", ""]);
+exports.push([module.i, "\n.removeBtn {\n    margin-right: 1rem;\n    color: red;\n    cursor: pointer;\n}\n.side-menu {\n    position: fixed;\n    top: 65px;\n    right: 0;\n    height: 100%;\n    width:200px;\n    padding-top: 30px;\n}\n.mask-overlay{\n        position: fixed;\n        z-index: 9998;\n        top: 0px;\n        left: 0;\n        width: 100vw;\n        height: 100vh;\n        background-color: rgba(0, 0, 0, 0.9);\n        display:flex;\n        justify-content: center;\n        align-items: center;\n}\n.panel {\n        z-index: 9999;\n        text-align: center;\n        width: 85vw;\n        height: 85vh;\n        margin: 0 auto;\n        padding: 20px 30px;\n        background-color: #fff;\n        border-radius: 2px;\n        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);\n        transition: all 0.3s ease;\n        font-family: Helvetica, Arial, sans-serif;\n}\nform {\n      display: flex;\n      flex-direction: column;\n      align-items: center;\n}\nform input {\n      margin: 10px;\n}\n.credit .fab {\n      font-size: 50px;\n      padding: 5px;\n      color: #3490dc;\n      cursor: pointer;\n}\n.credit .fab:hover {\n      color: blue;\n}\n.box-article {\n      display: flex;\n      justify-content: space-around;\n      align-items: center;\n      margin-bottom: 3px;\n      background-color: white;\n\n      height: 50px;\n}\n.box-cart {\n      background: white;\n}\n.fa-times {\n      color: red;\n      font-size: 20px;\n}\n.checkout-section {\n      display: flex;\n      flex-direction: column;\n      position: fixed;\n      bottom: 30px;\n      width: 200px;\n      margin: 0 auto;\n      text-align: center;\n}\n\n", ""]);
 
 // exports
 
@@ -39753,8 +39748,9 @@ var render = function() {
   return _c("div", { staticClass: "navbar-item has-dropdown is-hoverable" }, [
     _c("div", [
       _c(
-        "button",
+        "div",
         {
+          staticClass: "btn btn-danger",
           on: {
             click: function($event) {
               _vm.cartIsOpen = !_vm.cartIsOpen
@@ -39801,7 +39797,7 @@ var render = function() {
           }
         ],
         staticClass:
-          "navbar-dropdown is-boxed is-right side-menu shadow-sm box-cart"
+          "navbar-dropdown is-boxed is-right side-menu shadow-sm  box-cart navbar-light bg-white shadow-sm "
       },
       [
         _vm._l(_vm.$store.state.cart.listProducts, function(item, index) {
@@ -39829,33 +39825,25 @@ var render = function() {
           ])
         }),
         _vm._v(" "),
-        _c("br"),
-        _vm._v(" "),
-        _c("span", { staticClass: "navbar-item" }, [
-          _c("div", { staticClass: "box-article" }, [
-            _vm._v(
-              "\n              Totale: " +
-                _vm._s(_vm.$store.state.cart.totalPrice) +
-                "€\n            "
-            )
-          ])
-        ]),
-        _vm._v(" "),
-        _c("hr", { staticClass: "navbar-divider" }),
-        _vm._v(" "),
-        _c(
-          "div",
-          {
-            staticClass: "box-article navbar-item",
-            staticStyle: { cursor: "pointer" },
-            on: {
-              click: function($event) {
-                _vm.paymentsOpen = !_vm.paymentsOpen
+        _c("div", { staticClass: "navbar-item box-article checkout-section" }, [
+          _c("h4", [
+            _vm._v("Totale: " + _vm._s(_vm.$store.state.cart.totalPrice) + "€")
+          ]),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "btn btn-danger",
+              staticStyle: { cursor: "pointer" },
+              on: {
+                click: function($event) {
+                  _vm.paymentsOpen = !_vm.paymentsOpen
+                }
               }
-            }
-          },
-          [_c("span", [_vm._v("\n              Checkout\n          ")])]
-        ),
+            },
+            [_vm._v("Checkout ")]
+          )
+        ]),
         _vm._v(" "),
         _c(
           "div",

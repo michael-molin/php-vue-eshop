@@ -1,33 +1,28 @@
 <template>
     <div class="navbar-item has-dropdown is-hoverable">
         <div>
-          <button @click="cartIsOpen = !cartIsOpen">
+          <div @click="cartIsOpen = !cartIsOpen" class="btn btn-danger">
             <i class="fas fa-shopping-cart" ></i> {{ $store.state.cart.cartCount }}
-          </button>
+          </div>
           <input type="hidden" name="userId" v-model="userId">
         </div>
         
-        <div v-show="cartIsOpen" class="navbar-dropdown is-boxed is-right side-menu shadow-sm box-cart">
+        <div v-show="cartIsOpen" class="navbar-dropdown is-boxed is-right side-menu shadow-sm  box-cart navbar-light bg-white shadow-sm ">
 
             <!-- con la VAR $store, entro dentro state del file index.js -->
+            
             <div v-for="(item,index) in $store.state.cart.listProducts" :key="index">
                 <div class="box-article">
                   <span  class="navbar-item"> {{ item.name }} - {{ item.price }}€</span>
                   <span class="removeBtn" @click="removeFromCart(index)"><i class="fas fa-times"></i></span>
                 </div>
             </div>
-            <br>
-            <span class="navbar-item">
-                <div class="box-article">
-                  Totale: {{ $store.state.cart.totalPrice }}€
-                </div>
-            </span>
-            <hr class="navbar-divider">
-            <div class="box-article navbar-item" @click="paymentsOpen = !paymentsOpen" style="cursor:pointer;">
-              <span >
-                  Checkout
-              </span>
+            <div class="navbar-item box-article checkout-section">
+              <h4>Totale: {{ $store.state.cart.totalPrice }}€</h4>
+              <div @click="paymentsOpen = !paymentsOpen" style="cursor:pointer;" class="btn btn-danger">Checkout </div>
             </div>
+
+            
             <div v-show='paymentsOpen'>
                 <transition class="fade">
                     <div class="mask-overlay" @click="paymentsOpen = !paymentsOpen">
@@ -244,20 +239,28 @@
           align-items: center;
           margin-bottom: 3px;
           background-color: white;
-          border: 1px solid rgba(0,0,0,0.1);
+
           height: 50px;
         }
 
         .box-cart {
-          background: rgb(255,255,255);
-          background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(200,200,200,1) 100%);
-          /* margin-top: 78px; */
-          padding-top: 3px;
+          background: white;
+          
         }
 
         .fa-times {
           color: red;
           font-size: 20px;
+        }
+
+        .checkout-section {
+          display: flex;
+          flex-direction: column;
+          position: fixed;
+          bottom: 30px;
+          width: 200px;
+          margin: 0 auto;
+          text-align: center;
         }
 
 </style>
