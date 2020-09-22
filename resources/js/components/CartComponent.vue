@@ -32,15 +32,14 @@
                         <h5>Numero Articoli: {{ $store.state.cart.cartCount }}</h5>
                         <div class="form-group text-center">
                             <div>
-                              <div class="card-header"></div>
                               <p>Per pagamento a buon fine: 4242 4242 4242 4242</p>
                               <p>Per pagamento rifiutato: 4000 0000 0000 9995</p>
                               <div class="card-body">
                                   <Label for="card-holder-name"> Nome Titolare Carta: </Label>
                                   <input id="card-holder-name" type="text">
                                   <div id="card" ref="card"></div>
-                                  <button id="card-button" @click="toPayment" :disabled="isDisable"> 
-                                      <i class="fab fa-cc-stripe" v-if="isPay"></i>
+                                  <button id="card-button" class="btn btn-danger" @click="toPayment" :disabled="isDisable"> 
+                                      <span v-if="isPay"> Paga</span>
                                       <i class="fas fa-spinner" id="loading" v-if="isLoading"></i>
                                       <i class="fas fa-check-circle" v-if="isOk"></i>
                                       <i class="fas fa-times" v-if="isError"></i>
@@ -82,6 +81,14 @@
             self.stripe= Stripe(self.spk);
             self.card = self.stripe.elements().create('card', {
                 hidePostalCode : true,
+                base: {
+                  style: {
+                  fontSize: '24px',
+                  color: 'black',
+                  fontWeight: '500'
+                }
+                }
+                
             });
             console.log(self.card);
             self.card.mount(self.$refs.card);
@@ -261,6 +268,13 @@
           width: 200px;
           margin: 0 auto;
           text-align: center;
+        }
+
+        #card-button {
+          margin-top: 150px;
+          height: 50px;
+          width: 80px;
+          font-size: 24px;
         }
 
 </style>

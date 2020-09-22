@@ -1986,7 +1986,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['app'],
   // prendo i dati inseriti nel file app.blade
@@ -2010,7 +2009,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     var self = this;
     self.stripe = Stripe(self.spk);
     self.card = self.stripe.elements().create('card', {
-      hidePostalCode: true
+      hidePostalCode: true,
+      base: {
+        style: {
+          fontSize: '24px',
+          color: 'black',
+          fontWeight: '500'
+        }
+      }
     });
     console.log(self.card);
     self.card.mount(self.$refs.card);
@@ -7085,7 +7091,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.removeBtn {\n    margin-right: 1rem;\n    color: red;\n    cursor: pointer;\n}\n.side-menu {\n    position: fixed;\n    top: 65px;\n    right: 0;\n    height: 100%;\n    width:200px;\n    padding-top: 30px;\n}\n.mask-overlay{\n        position: fixed;\n        z-index: 9998;\n        top: 0px;\n        left: 0;\n        width: 100vw;\n        height: 100vh;\n        background-color: rgba(0, 0, 0, 0.9);\n        display:flex;\n        justify-content: center;\n        align-items: center;\n}\n.panel {\n        z-index: 9999;\n        text-align: center;\n        width: 85vw;\n        height: 85vh;\n        margin: 0 auto;\n        padding: 20px 30px;\n        background-color: #fff;\n        border-radius: 2px;\n        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);\n        transition: all 0.3s ease;\n        font-family: Helvetica, Arial, sans-serif;\n}\nform {\n      display: flex;\n      flex-direction: column;\n      align-items: center;\n}\nform input {\n      margin: 10px;\n}\n.credit .fab {\n      font-size: 50px;\n      padding: 5px;\n      color: #3490dc;\n      cursor: pointer;\n}\n.credit .fab:hover {\n      color: blue;\n}\n.box-article {\n      display: flex;\n      justify-content: space-around;\n      align-items: center;\n      margin-bottom: 3px;\n      background-color: white;\n\n      height: 50px;\n}\n.box-cart {\n      background: white;\n}\n.fa-times {\n      color: red;\n      font-size: 20px;\n}\n.checkout-section {\n      display: flex;\n      flex-direction: column;\n      position: fixed;\n      bottom: 30px;\n      width: 200px;\n      margin: 0 auto;\n      text-align: center;\n}\n\n", ""]);
+exports.push([module.i, "\n.removeBtn {\n    margin-right: 1rem;\n    color: red;\n    cursor: pointer;\n}\n.side-menu {\n    position: fixed;\n    top: 65px;\n    right: 0;\n    height: 100%;\n    width:200px;\n    padding-top: 30px;\n}\n.mask-overlay{\n        position: fixed;\n        z-index: 9998;\n        top: 0px;\n        left: 0;\n        width: 100vw;\n        height: 100vh;\n        background-color: rgba(0, 0, 0, 0.9);\n        display:flex;\n        justify-content: center;\n        align-items: center;\n}\n.panel {\n        z-index: 9999;\n        text-align: center;\n        width: 85vw;\n        height: 85vh;\n        margin: 0 auto;\n        padding: 20px 30px;\n        background-color: #fff;\n        border-radius: 2px;\n        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);\n        transition: all 0.3s ease;\n        font-family: Helvetica, Arial, sans-serif;\n}\nform {\n      display: flex;\n      flex-direction: column;\n      align-items: center;\n}\nform input {\n      margin: 10px;\n}\n.credit .fab {\n      font-size: 50px;\n      padding: 5px;\n      color: #3490dc;\n      cursor: pointer;\n}\n.credit .fab:hover {\n      color: blue;\n}\n.box-article {\n      display: flex;\n      justify-content: space-around;\n      align-items: center;\n      margin-bottom: 3px;\n      background-color: white;\n\n      height: 50px;\n}\n.box-cart {\n      background: white;\n}\n.fa-times {\n      color: red;\n      font-size: 20px;\n}\n.checkout-section {\n      display: flex;\n      flex-direction: column;\n      position: fixed;\n      bottom: 30px;\n      width: 200px;\n      margin: 0 auto;\n      text-align: center;\n}\n#card-button {\n      margin-top: 150px;\n      height: 50px;\n      width: 80px;\n      font-size: 24px;\n}\n\n", ""]);
 
 // exports
 
@@ -39898,8 +39904,6 @@ var render = function() {
                       _vm._v(" "),
                       _c("div", { staticClass: "form-group text-center" }, [
                         _c("div", [
-                          _c("div", { staticClass: "card-header" }),
-                          _vm._v(" "),
                           _c("p", [
                             _vm._v(
                               "Per pagamento a buon fine: 4242 4242 4242 4242"
@@ -39931,6 +39935,7 @@ var render = function() {
                               _c(
                                 "button",
                                 {
+                                  staticClass: "btn btn-danger",
                                   attrs: {
                                     id: "card-button",
                                     disabled: _vm.isDisable
@@ -39939,9 +39944,7 @@ var render = function() {
                                 },
                                 [
                                   _vm.isPay
-                                    ? _c("i", {
-                                        staticClass: "fab fa-cc-stripe"
-                                      })
+                                    ? _c("span", [_vm._v(" Paga")])
                                     : _vm._e(),
                                   _vm._v(" "),
                                   _vm.isLoading
